@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Documents and Settings/Louis/Desktop/Swat3026/4/Storyteller3026a.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/storytron/forstorytellerclient.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=storytron/src&lt;storyTellerPackage{StorytellerMain.java[StorytellerMain" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.uber.operator"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.enginecommon"/>
+        <javaElement handleIdentifier="=storytron/res&lt;images.emoticubes"/>
+        <file path="/storytron/res/images/left_st_header.png"/>
+        <javaElement handleIdentifier="=storytron/src&lt;storyTellerPackage"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{TerminationSettings.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat.util"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{RelationshipSettings.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{Swat.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{BackgroundEditor.java"/>
+        <file path="/storytron/res/images/right_st_header.png"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{BackgroundInformationPanel.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{CopyrightEditor.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat{package-info.java"/>
+        <javaElement handleIdentifier="=storytron/jeri"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.uber"/>
+    </selectedElements>
+    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
+</jardesc>

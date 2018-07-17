@@ -1,0 +1,11 @@
+-sourcepath src
+-windowtitle Storytron
+-doctitle Storytron
+-link http://java.sun.com/j2se/1.5.0/docs/api/
+-linksource
+-noqualifier all
+-use
+-package 
+-classpath src
+-d doc
+-subpackages com.storytron:Engine

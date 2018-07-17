@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="tokenType">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="token" type="tokenType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Arg" type="xs:string" use="required"/>
+		<xs:attribute name="Label" type="xs:string" use="optional"/>
+		<xs:attribute name="Parameter" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:element name="dictionary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dictionaryVersion">
+					<xs:complexType>
+						<xs:attribute name="Label" type="xs:float" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="copyright" type="xs:string"/>
+				<xs:element name="startingVerb">
+					<xs:complexType>
+						<xs:attribute name="Label" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="startingRole" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="Label" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="startingOption" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="Label" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="propTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="Label" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="propTextTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stageTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="Label" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stageTextTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="outerTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="Label" type="xs:string" use="required"/>
+											<xs:attribute name="rvisible" type="xs:boolean" use="optional"/>
+											<xs:attribute name="visible" type="xs:boolean" use="optional"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="actorTextTraits">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="actorSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="actor" minOccurs="2" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="attributes">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="attribute" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="Name" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pValueSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pValues" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="AboutWhom" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:float">
+																	<xs:attribute name="Name" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Label" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="AboutWhat" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:float">
+																	<xs:attribute name="Name" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Label" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="AboutWhere" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:float">
+																	<xs:attribute name="Name" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Label" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="OfWhom" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="propSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="prop" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="description" type="xs:string"/>
+										<xs:element name="image" type="xs:string" minOccurs="0"/>
+										<xs:element name="carried" type="xs:boolean"/>
+										<xs:element name="visible" type="xs:boolean"/>
+										<xs:element name="inPlay" type="xs:boolean"/>
+										<xs:element name="owner" type="xs:string"/>
+										<xs:element name="location" type="xs:string"/>
+										<xs:element name="knowsMe" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ofWhom" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:boolean">
+																	<xs:attribute name="Label" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="Name" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stageSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="stage" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="description" type="xs:string" minOccurs="0"/>
+										<xs:element name="image" type="xs:string" minOccurs="0"/>
+										<xs:element name="doorOpen" type="xs:boolean"/>
+										<xs:element name="population" type="xs:unsignedByte"/>
+										<xs:element name="owner" type="xs:string"/>
+										<xs:element name="xCoord" type="xs:float"/>
+										<xs:element name="yCoord" type="xs:float"/>
+										<xs:element name="unwelcoming_Homey" minOccurs="0">
+										  <xs:complexType>
+											<xs:sequence>
+											  <xs:element minOccurs="0" maxOccurs="unbounded" name="ofWhom">
+												<xs:complexType>
+												  <xs:simpleContent>
+													<xs:extension base="xs:float">
+													  <xs:attribute name="Label" type="xs:string" use="required" />
+													</xs:extension>
+												  </xs:simpleContent>
+												</xs:complexType>
+											  </xs:element>
+											</xs:sequence>
+										  </xs:complexType>
+										</xs:element>										
+										<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="Name" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="customOperatorSet">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="customOperator" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="description" type="xs:string" minOccurs="0"/>
+										<xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="Label" type="xs:string" use="required"/>
+												<xs:attribute name="Type" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="body">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="token" type="tokenType" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+									<xs:attribute name="Type" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="optionSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="option" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="acceptable">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="token" type="tokenType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="desirable">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="token" type="tokenType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="socketSpecs" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="script" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="token" type="tokenType"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Index" type="xs:unsignedByte" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="roleSet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="role" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="assumeRoleIf">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="token" type="tokenType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="script" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="token" type="tokenType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="optionlink" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="Index" type="xs:unsignedByte" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="categorySet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="category" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="verb" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="description" type="xs:string" minOccurs="0"/>
+													<xs:element name="hijackable" type="xs:boolean"/>
+													<xs:element name="occupiesDirObject" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="timeToPrepare" type="xs:unsignedByte"/>
+													<xs:element name="timeToExecute" type="xs:unsignedByte"/>
+													<xs:element name="category" type="xs:string"/>
+													<xs:element name="expression" type="xs:string"/>
+													<xs:element name="trivial_Momentous" type="xs:float"/>
+													<xs:element name="socket" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="suffix">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="token" type="tokenType"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="script">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="token" type="tokenType"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="Index" type="xs:unsignedByte" use="required"/>
+															<xs:attribute name="Notes" type="xs:string" use="required"/>
+															<xs:attribute name="Presence" type="xs:string" use="required"/>
+															<xs:attribute name="Type" type="xs:string" use="required"/>
+															<xs:attribute name="Visible" type="xs:boolean" use="required"/>
+															<xs:attribute name="Witness" type="xs:boolean" use="required"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="abort" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="token" type="tokenType"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="script" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="token" type="tokenType"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="rolelink" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="Index" type="xs:unsignedByte" use="required"/>
+															<xs:attribute name="Label" type="xs:string" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Label" type="xs:string" use="required"/>
+												<xs:attribute name="Witnesses" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Label" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="inactivityTimeout" type="xs:unsignedByte" use="required"/>
+			<xs:attribute name="version" type="xs:unsignedShort" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

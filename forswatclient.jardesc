@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Documents and Settings/Louis/Desktop/Swat3026/0/SwatClient3026.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/storytron/forswatclient.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=storytron/src&lt;com.storytron.swat{SwatMain.java[SwatMain" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{Statistics.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.enginecommon"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{LimitedInputStream.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat.util"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{EnginePlayerIO.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{AbstractEngine.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{LogDataCollector.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{package-info.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat.tree"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{JeriCustomServerSetup.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{RehearsalLogger.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{CustomRandom.java"/>
+        <javaElement handleIdentifier="=storytron/jeri"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{PlayerInputRecorder.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.uber.operator"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{LockMap.java"/>
+        <javaElement handleIdentifier="=storytron/res&lt;images.emoticubes"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{TreeLogger.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;storyTellerPackage"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{StorytellerPlayerIO.java"/>
+        <folder path="/storytron/lib"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{Interpreter.java"/>
+        <file path="/storytron/security.policy"/>
+        <file path="/storytron/.classpath"/>
+        <javaElement handleIdentifier="=storytron/res&lt;sounds"/>
+        <javaElement handleIdentifier="=storytron/res&lt;images"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{ResumerIO.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.uber.deiktotrans"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat.verbeditor"/>
+        <file path="/storytron/res/data/OperatorList.xml"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.swat.loglizard"/>
+        <javaElement handleIdentifier="=storytron/src&lt;Engine.enginePackage{EngineLogger.java"/>
+        <javaElement handleIdentifier="=storytron/src&lt;com.storytron.uber"/>
+    </selectedElements>
+    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
+</jardesc>

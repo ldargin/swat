@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Documents and Settings/Louis/Desktop/Restlet.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/storytron/Restlet.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" manifestLocation="/storytron/MANIFEST.MF" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/storytron/javadocargs"/>
+        <javaElement handleIdentifier="=storytron/tests"/>
+        <folder path="/storytron/lib"/>
+        <file path="/storytron/security.policy"/>
+        <file path="/storytron/.classpath"/>
+        <javaElement handleIdentifier="=storytron/res"/>
+        <file path="/storytron/storytron.iws"/>
+        <file path="/storytron/storedLogin"/>
+        <javaElement handleIdentifier="=storytron/src"/>
+        <file path="/storytron/storytron.ipr"/>
+        <folder path="/storytron/testdata"/>
+        <file path="/storytron/.project"/>
+        <file path="/storytron/storytron.iml"/>
+        <javaElement handleIdentifier="=storytron/jeri"/>
+    </selectedElements>
+</jardesc>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Documents and Settings/Louis/Desktop/Swat3026/0/SwatServer0.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/storytron/forswatserver.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=storytron/src&lt;Engine.enginePackage{Janus.java[Janus" manifestLocation="/storytron/swatserver.manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=storytron/res&lt;images"/>
+        <javaElement handleIdentifier="=storytron/res&lt;images.emoticubes"/>
+        <javaElement handleIdentifier="=storytron/src"/>
+        <folder path="/storytron/lib"/>
+        <file path="/storytron/security.policy"/>
+        <file path="/storytron/.classpath"/>
+        <file path="/storytron/res/data/OperatorList.xml"/>
+        <javaElement handleIdentifier="=storytron/res&lt;sounds"/>
+        <javaElement handleIdentifier="=storytron/jeri"/>
+    </selectedElements>
+    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
+</jardesc>

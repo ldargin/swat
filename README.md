@@ -7,7 +7,7 @@ This is the source code for Chris Crawford's storyworld authoring tool.
 - Git - Instructions on how to [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Git
 - Eclipse IDE for Java Developers - We recommend installing the [Photon package](https://www.eclipse.org/downloads/eclipse-packages/) for your platform.
 
-After installing and configuring the required software follow the instructions below to run the Java code.
+After installing and configuring the required software please clone or download this repository and follow the instructions below to run the code.
 
 
 ### In Eclipse

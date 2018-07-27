@@ -169,7 +169,8 @@ public final class Swat {
 	private static JMenuBar menuBar;
 	protected JFrame myFrame;
 	private EditorEnum editorInFocus = EditorEnum.NoEditorHasFocus;
-	public JMenuItem saveMenuItem, 
+	public JMenuItem openMenuItem,
+					saveMenuItem, 
 					undoMenuItem,
 					redoMenuItem,
 					cutMenuItem, 
@@ -684,6 +685,17 @@ public final class Swat {
 			}
 		});
 		
+		openMenuItem = new JMenuItem("Open");
+		openMenuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1172,6 +1184,8 @@ public final class Swat {
 		storyworldMenu.setMnemonic(KeyEvent.VK_W);
 		storyworldMenu.add(relationshipsMenuItem);
 		storyworldMenu.add(terminationMenuItem);
+		storyworldMenu.addSeparator();
+		storyworldMenu.add(openMenuItem);
 		storyworldMenu.addSeparator();
 		storyworldMenu.add(saveMenuItem);
 		storyworldMenu.add(saveAsMenuItem);

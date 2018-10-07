@@ -252,6 +252,9 @@ public final class Swat {
 		}			
 	};
 	
+	final Semaphore initSem;
+	static String stwfile;
+	
 	static ProgressMonitor rehearsalBar;
 //*********************************************************************
 	/**
@@ -276,7 +279,7 @@ public final class Swat {
 		
 		earlyInitialization();
 	
-		final Semaphore initSem = new Semaphore(0);
+		initSem = new Semaphore(0);
 		Thread worker=new Thread() {			
 			@Override
 			public void run() {
@@ -298,8 +301,93 @@ public final class Swat {
 		if (cd!=null)
 			chooser.setCurrentDirectory(cd);
 
+		// TODO Here's where SWAT automatically asks you to open a storyworld file when it starts. Need to make this a method that can be called from elsewhere.
+		
+//		com.storytron.enginecommon.Utils.openStoryworld(stwfile, myFrame, initSem); // This does not work
+		openStoryworld(stwfile, initSem); // This works
+		
+/*		try{
+			if (stwfile==null) { 
+				chooser.setFileFilter(swatFileFilter);
+				switch(chooser.showOpenDialog(myFrame)){
+				case JFileChooser.APPROVE_OPTION:
+					file = chooser.getSelectedFile();
+					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+					break;
+				default:
+					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+					System.exit(0);
+				}
+			} else 
+				file = new File(stwfile);
+			
+			initSem.acquire();
+			
+			FileInputStream fis = new FileInputStream(file);
+			dk = new Deikto(file);
+			dk.roleVerbs = new HashMap<Role,ArrayList<Verb>>();
+			dk.optionRoles = new HashMap<Role.Option,ArrayList<Role>>();
+			dk.readXML(fis, true);
+			fis.close();
+			dkResourceNames = dk.getResourceNames();
+			final LinkedList<LogIssue> errors=dk.checkScripts(null,true);
+			if (!errors.isEmpty()) 
+				showLogIssues(errors);
+			
+			initSem.acquire();
+		} catch (BadVersionException e){
+			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
+			System.exit(0);
+		} catch (SAXParseException e) {
+			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nThe file has an invalid format. Line: "+e.getLineNumber()+" Column: "+e.getColumnNumber(),"Reading error",e);
+			System.exit(0);
+		} catch (IOException e) {
+			Utils.showErrorDialog(null, "There was an error when trying to access the file\n"+chooser.getSelectedFile().getPath(),"File error",e);
+			System.exit(0);
+		} catch (LimitException e) {
+			e.printStackTrace();
+			Utils.displayLimitExceptionMessage(e,"File error","There was an error when reading the file\n"+chooser.getSelectedFile().getPath());
+			System.exit(0);
+		} catch (Deikto.ReadingException e) {
+			e.printStackTrace();
+			switch(e.t) {
+			case OperatorDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown operator "+e.s0+"\nwhen reading the script\n"+e.s1,"File error");
+				break;
+			case WordDescriptionTraitDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown trait "+e.s0+"\n when reading traits of "+e.s1,"File error");
+				break;
+			case WordDescriptionPTraitDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown perception trait "+e.s0+"\nwhen reading traits of "+e.s1+" towards "+e.s2,"File error");
+				break;
+			}
+			System.exit(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nMake sure this file is a storyworld file and it is not corrupt.","Reading error",e);
+			System.exit(0);
+		}*/
+		
+
+		updateFrameTitle();
+
+		verbEditor.init(dk);
+		operatorEditor.init(dk);
+		actorEditor.init(dk);
+		propEditor.init(dk);
+		stageEditor.init(dk);
+		relationshipEditor.init(dk);
+		
+		copyrightEditor.setText(dk.getCopyright());
+
+		setEditorInFocus(EditorEnum.VerbEditorHasFocus);
+		myFrame.setVisible(true);
+	}
+	
+	// Test to see if method in same file will work
+	public void openStoryworld(String stwfile, Semaphore initSem) {
 		try{
-			if (stwfile==null) {
+			if (stwfile==null) { 
 				chooser.setFileFilter(swatFileFilter);
 				switch(chooser.showOpenDialog(myFrame)){
 				case JFileChooser.APPROVE_OPTION:
@@ -359,20 +447,6 @@ public final class Swat {
 			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nMake sure this file is a storyworld file and it is not corrupt.","Reading error",e);
 			System.exit(0);
 		}
-
-		updateFrameTitle();
-
-		verbEditor.init(dk);
-		operatorEditor.init(dk);
-		actorEditor.init(dk);
-		propEditor.init(dk);
-		stageEditor.init(dk);
-		relationshipEditor.init(dk);
-		
-		copyrightEditor.setText(dk.getCopyright());
-
-		setEditorInFocus(EditorEnum.VerbEditorHasFocus);
-		myFrame.setVisible(true);
 	}
 	
 	private void updateFrameTitle(){
@@ -685,12 +759,13 @@ public final class Swat {
 			}
 		});
 		
+		// TODO Open storyworld menu item
 		openMenuItem = new JMenuItem("Open");
 		openMenuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				openStoryworld("", initSem); // This does not work
 				
 			}
 			

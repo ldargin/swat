@@ -25,11 +25,15 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.Semaphore;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.DeflaterOutputStream;
@@ -43,6 +47,8 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -53,10 +59,18 @@ import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.tree.TreePath;
 
+import org.xml.sax.SAXParseException;
+
 import Engine.enginePackage.EngineLogger.MsgType;
 
 import com.storytron.swat.util.LineBreaker;
 import com.storytron.uber.Deikto;
+import com.storytron.uber.Role;
+import com.storytron.uber.Verb;
+import com.storytron.uber.Deikto.LogIssue;
+import com.storytron.uber.deiktotrans.DeiktoLoader.BadVersionException;
+
+import com.storytron.swat.Swat;
 
 /**
  * A class to hold utility methods, non-related to anything else.  
@@ -878,6 +892,76 @@ public final class Utils {
 	/** Returns the URL for a given file. */
 	private static URL getURL(String file){
 		return Utils.class.getClassLoader().getResource(file);
+	}
+	
+	public static void openStoryworld(String stwfile, JFrame myFrame, Semaphore initSem) {
+		JFileChooser chooser = new JFileChooser("res/data");
+		File file = new File(""); 
+		Deikto dk;
+		LinkedList<String> dkResourceNames;
+		
+		try {
+			if (stwfile==null) { 
+				//chooser.setFileFilter(swatFileFilter); // TODO openStoryworld method: Make it work so I can uncomment it 
+				switch(chooser.showOpenDialog(myFrame)){
+				case JFileChooser.APPROVE_OPTION:
+					file = chooser.getSelectedFile();
+					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+					break;
+				default:
+					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+					System.exit(0);
+				}
+			} else 
+				file = new File(stwfile);
+			
+			initSem.acquire();
+			
+			FileInputStream fis = new FileInputStream(file);
+			dk = new Deikto(file);
+			dk.roleVerbs = new HashMap<Role,ArrayList<Verb>>();
+			dk.optionRoles = new HashMap<Role.Option,ArrayList<Role>>();
+			dk.readXML(fis, true);
+			fis.close();
+			dkResourceNames = dk.getResourceNames();
+			final LinkedList<LogIssue> errors=dk.checkScripts(null,true);
+			//if (!errors.isEmpty()) // TODO openStoryworld method: Make it work so I can uncomment it 
+				//Swat.showLogIssues(errors); // TODO openStoryworld method: Make it work so I can uncomment it 
+			
+			initSem.acquire();
+		} catch (BadVersionException e){
+			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
+			System.exit(0);
+		} catch (SAXParseException e) {
+			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nThe file has an invalid format. Line: "+e.getLineNumber()+" Column: "+e.getColumnNumber(),"Reading error",e);
+			System.exit(0);
+		} catch (IOException e) {
+			Utils.showErrorDialog(null, "There was an error when trying to access the file\n"+chooser.getSelectedFile().getPath(),"File error",e);
+			System.exit(0);
+		} catch (LimitException e) {
+			e.printStackTrace();
+			Utils.displayLimitExceptionMessage(e,"File error","There was an error when reading the file\n"+chooser.getSelectedFile().getPath());
+			System.exit(0);
+		} catch (Deikto.ReadingException e) {
+			e.printStackTrace();
+			switch(e.t) {
+			case OperatorDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown operator "+e.s0+"\nwhen reading the script\n"+e.s1,"File error");
+				break;
+			case WordDescriptionTraitDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown trait "+e.s0+"\n when reading traits of "+e.s1,"File error");
+				break;
+			case WordDescriptionPTraitDoesNotExist:
+				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown perception trait "+e.s0+"\nwhen reading traits of "+e.s1+" towards "+e.s2,"File error");
+				break;
+			}
+			System.exit(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nMake sure this file is a storyworld file and it is not corrupt.","Reading error",e);
+			System.exit(0);
+		} 
+		
 	}
 
 }

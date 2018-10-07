@@ -376,8 +376,8 @@ public final class Swat {
 			System.exit(0);
 		}*/
 		
-
-		updateFrameTitle();
+		updateEditor();
+		/*updateFrameTitle();
 
 		verbEditor.init(dk);
 		operatorEditor.init(dk);
@@ -389,10 +389,9 @@ public final class Swat {
 		copyrightEditor.setText(dk.getCopyright());
 
 		setEditorInFocus(EditorEnum.VerbEditorHasFocus);
-		myFrame.setVisible(true);
+		myFrame.setVisible(true);*/
 	}
 	
-	// Test to see if method in same file will work
 	public void openStoryworld(String stwfile, Semaphore initSem) {
 		try{
 			if (stwfile==null) { 
@@ -409,7 +408,7 @@ public final class Swat {
 			} else 
 				file = new File(stwfile);
 			
-			initSem.acquire();
+			initSem.acquire(); // TODO Here is where the call from the Open menu fails
 			
 			FileInputStream fis = new FileInputStream(file);
 			dk = new Deikto(file);
@@ -455,6 +454,22 @@ public final class Swat {
 			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nMake sure this file is a storyworld file and it is not corrupt.","Reading error",e);
 			System.exit(0);
 		}
+	}
+	
+	private void updateEditor() {
+		updateFrameTitle();
+
+		verbEditor.init(dk);
+		operatorEditor.init(dk);
+		actorEditor.init(dk);
+		propEditor.init(dk);
+		stageEditor.init(dk);
+		relationshipEditor.init(dk);
+		
+		copyrightEditor.setText(dk.getCopyright());
+
+		setEditorInFocus(EditorEnum.VerbEditorHasFocus);
+		myFrame.setVisible(true);
 	}
 	
 	private void updateFrameTitle(){
@@ -773,8 +788,8 @@ public final class Swat {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				openStoryworld("", initSem); // This does not work
-				
+				openStoryworld(stwfile, initSem);
+				updateEditor();
 			}
 			
 		});

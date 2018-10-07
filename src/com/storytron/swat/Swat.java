@@ -237,6 +237,7 @@ public final class Swat {
 	private static boolean altPressed, controlPressed;
 
 	private static Map<String,AudioClip> clips=new TreeMap<String,AudioClip>();
+	
 	private FileFilter swatFileFilter = new FileFilter(){
 		@Override
 		public boolean accept(File f) {
@@ -253,9 +254,14 @@ public final class Swat {
 	};
 	
 	final Semaphore initSem;
-	static String stwfile;
+	
+	// Setting stwfile to null forces prompt and selection of a storyworld file.
+	// Set to storyworld filename to automatically load that storyworld file.
+	// Examples: "testdata/Test.stw" or "/Users/billmaya/Dropbox/Projects-Dropbox/Siboot/Siboot-for-Storytron/SWAT/My storyworlds/Siboot.stw"
+	static String stwfile = null; 
 	
 	static ProgressMonitor rehearsalBar;
+	
 //*********************************************************************
 	/**
 	 * <ul>
@@ -267,9 +273,11 @@ public final class Swat {
 	 *  <li>Builds all the swat editors.</li>
 	 * </ul>
 	 * */
+	
 	public Swat() {
-		this(null);
+		this(stwfile); 
 	}
+	
 	/** 
 	 * This constructor is called from testing routines.
 	 * If stwfile is not null, it picks that file to load

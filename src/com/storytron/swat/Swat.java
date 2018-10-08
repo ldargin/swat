@@ -287,8 +287,9 @@ public final class Swat {
 		
 		earlyInitialization();
 	
-		initSem = new Semaphore(0);
-		Thread worker=new Thread() {			
+		initSem = new Semaphore(0); // No threads waiting but if a thread tries to decrement it will block
+		
+		Thread worker = new Thread() {			
 			@Override
 			public void run() {
 				try {
@@ -303,11 +304,11 @@ public final class Swat {
 				}
 			}		
 		};
+		
 		worker.start();
 
 		File cd = Utils.getWorkingDirectory();
-		if (cd!=null)
-			chooser.setCurrentDirectory(cd);
+		if (cd != null) chooser.setCurrentDirectory(cd);
 
 		// TODO Here's where SWAT automatically asks you to open a storyworld file when it starts. Need to make this a method that can be called from elsewhere.
 		
@@ -408,7 +409,7 @@ public final class Swat {
 			} else 
 				file = new File(stwfile);
 			
-			initSem.acquire(); // TODO Here is where the call from the Open menu fails
+			//initSem.acquire(); // TODO Here is where the call from the Open menu fails
 			
 			FileInputStream fis = new FileInputStream(file);
 			dk = new Deikto(file);
@@ -421,7 +422,7 @@ public final class Swat {
 			if (!errors.isEmpty()) 
 				showLogIssues(errors);
 			
-			initSem.acquire();
+			//initSem.acquire();
 		} catch (BadVersionException e){
 			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
 			System.exit(0);
@@ -1360,7 +1361,7 @@ public final class Swat {
 		copyrightEditor.setTitle("Copyrights");
 		
 		loadLoginData();
-	}
+	} // End init()
 	
 	/** Returns the first verb found having an active wordsocket with the given type. */
 	private Verb findVerbUsingWordsocketType(Operator.Type t) {

@@ -253,8 +253,6 @@ public final class Swat {
 		}			
 	};
 	
-	final Semaphore initSem;
-	
 	// Setting stwfile to null forces prompt and selection of a storyworld file.
 	// Set to storyworld filename to automatically load that storyworld file.
 	// Examples: "testdata/Test.stw" or "/Users/billmaya/Dropbox/Projects-Dropbox/Siboot/Siboot-for-Storytron/SWAT/My storyworlds/Siboot.stw"
@@ -286,36 +284,25 @@ public final class Swat {
 	public Swat(String stwfile) {
 		
 		earlyInitialization();
-	
-		initSem = new Semaphore(0); // No threads waiting but if a thread tries to decrement it will block
 		
-		Thread worker = new Thread() {			
-			@Override
-			public void run() {
-				try {
-					VerbPropertiesEditor.loadExpressionList();
-					OperatorDictionary.loadOperators(); 
-					initSem.release();
-					Swat.this.init();
-					initSem.release();
-				} catch (Exception e){
-					Utils.showErrorDialog(null, "There was an error launching Swat.","Launch error",e);
-					System.exit(0);
-				}
-			}		
-		};
-		
-		worker.start();
+		try {
+			VerbPropertiesEditor.loadExpressionList();
+			OperatorDictionary.loadOperators();
+			Swat.this.init();
+		} catch (Exception e) {
+			Utils.showErrorDialog(null, "There was an error launching Swat.", "Launch error", e);
+			System.exit(0);
+		}
 
 		File cd = Utils.getWorkingDirectory();
 		if (cd != null) chooser.setCurrentDirectory(cd);
 
-		openStoryworld(stwfile, initSem);		
+		openStoryworld(stwfile);		
 		updateEditor();
 
 	}
 	
-	public void openStoryworld(String stwfile, Semaphore initSem) {
+	public void openStoryworld(String stwfile) {
 		try{
 			if (stwfile==null) { 
 				chooser.setFileFilter(swatFileFilter);
@@ -331,8 +318,6 @@ public final class Swat {
 			} else 
 				file = new File(stwfile);
 			
-			//initSem.acquire(); // TODO Here is where the call from the Open menu fails
-			
 			FileInputStream fis = new FileInputStream(file);
 			dk = new Deikto(file);
 			dk.roleVerbs = new HashMap<Role,ArrayList<Verb>>();
@@ -344,7 +329,6 @@ public final class Swat {
 			if (!errors.isEmpty()) 
 				showLogIssues(errors);
 			
-			//initSem.acquire();
 		} catch (BadVersionException e){
 			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
 			System.exit(0);
@@ -711,7 +695,7 @@ public final class Swat {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				openStoryworld(stwfile, initSem);
+				openStoryworld(stwfile);
 				updateEditor();
 			}
 			

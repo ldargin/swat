@@ -742,20 +742,10 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
   private void createNodes() {
 	  // [change-ld] replaced code with call to a recursive function
 	  // to generate nodes an arbitrary number of levels deep
-	  /*      
-    for (int i = 0; (i < Verb.cMenuCategories); ++i) {
-    	DefaultMutableTreeNode category = new DefaultMutableTreeNode(Verb.menuCategory[i]);
-      root.add(category);
-      */
+
+	  root.removeAllChildren();
       createNodeChildren(root, dk.categories);
-      /*
-      for (int j = 0; (j < dk.getVerbCount()); ++j) {
-      		if (dk.getVerb(j).category.equals(Verb.menuCategory[i])) {
-      			DefaultMutableTreeNode verb = new DefaultMutableTreeNode(dk.getVerb(j).label);
-     			category.add(verb);
-      		}
-      }
-      */
+      treeModel.reload();
 
   }
   
@@ -780,27 +770,14 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		  }		  
 	  }
   }
-  
-//**********************************************************************		
-  public void reload() {
+  		
+  public void reload() { // TODO Should I refactor this, combining somehow with createNodes() above?
 	  root.removeAllChildren();
 
 	  // [change-ld] replaced code with call to a recursive function
 	  // to generate nodes an arbitrary number of levels deep  		
 	  createNodeChildren(root, dk.categories);
-	  /*
-	   for (int i = 0; (i < Verb.cMenuCategories); ++i) {
-    		DefaultMutableTreeNode category = new DefaultMutableTreeNode(Verb.menuCategory[i]);
-    		root.add(category);
-    		for (int j = 0; (j < dk.getVerbCount()); ++j) {
-	      		if (dk.getVerb(j).category.equals(Verb.menuCategory[i])) {
-	      			DefaultMutableTreeNode verb = new DefaultMutableTreeNode(dk.getVerb(j).label);
-	     			category.add(verb);
-	      		}
-           }
-      
-      	}
-      	*/
+
     treeModel.reload();
   }
   

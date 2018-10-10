@@ -97,7 +97,9 @@ import javax.swing.text.JTextComponent;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import storyTellerPackage.SavedStory;
@@ -286,10 +288,10 @@ public final class Swat {
 		earlyInitialization();
 		
 		try {
-			VerbPropertiesEditor.loadExpressionList();
-			OperatorDictionary.loadOperators();
+			VerbPropertiesEditor.loadExpressionList(); // can throw IOException
+			OperatorDictionary.loadOperators(); // can throw IOException, ParserConfigurationException, SAXException
 			Swat.this.init();
-		} catch (Exception e) {
+		} catch (Exception e) { // TODO Handle specific exceptions instead of generic exception
 			Utils.showErrorDialog(null, "There was an error launching Swat.", "Launch error", e);
 			System.exit(0);
 		}

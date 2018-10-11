@@ -1405,13 +1405,15 @@ public final class Swat {
 	 * @return false iff the user cancels. 
 	 * */
 	public boolean writeStoryworld(File saveFile) {
-		return writeStoryworld(saveFile,true);
+		
+		return writeStoryworld(saveFile, true);
 	}
-	private boolean writeStoryworld(File saveFile,final boolean playSound) {
+	
+	private boolean writeStoryworld(File saveFile, final boolean playSound) {
+		
 		//  *** Write the XML string to Dictionary.xml ***
 		File file = null;
-		if (saveFile!=null) // if a filename was provided use that
-			file = saveFile;
+		if (saveFile != null) file = saveFile; 	
 		else { // if not, ask the user with a JFileChooser
 			chooser.setFileFilter(swatFileFilter);
 			chooser.setSelectedFile(new File(this.file.getName()));

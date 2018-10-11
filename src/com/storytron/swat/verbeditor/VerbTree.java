@@ -272,7 +272,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 
 	public void init(Deikto tdk){
 		dk=tdk;
-		createNodes(); // this method populates the tree with the verbs
+		updateTreeNodeList(); // this method populates the tree with the verbs
 	}
 	
 	/**
@@ -738,10 +738,8 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
     		}
 	    }
 	}
-//	**********************************************************************	
-  private void createNodes() {
-	  // [change-ld] replaced code with call to a recursive function
-	  // to generate nodes an arbitrary number of levels deep
+
+  private void updateTreeNodeList() {
 
 	  root.removeAllChildren();
       createNodeChildren(root, dk.categories);
@@ -751,6 +749,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
   
   // Generate nodes an arbitrary number of levels deep
   private void createNodeChildren(VerbTreeNode root, Category source) {
+	  
 	  ArrayList<String> verbNames;
 	  int numVerbs = 0;
 	  for (Category child: source.getChildren()) {
@@ -769,16 +768,6 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 			  }
 		  }		  
 	  }
-  }
-  		
-  public void reload() { // TODO Should I refactor this, combining somehow with createNodes() above?
-	  root.removeAllChildren();
-
-	  // [change-ld] replaced code with call to a recursive function
-	  // to generate nodes an arbitrary number of levels deep  		
-	  createNodeChildren(root, dk.categories);
-
-    treeModel.reload();
   }
   
 	private void addNewVerb() {
@@ -854,7 +843,8 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		} else
 			return ((VerbTreeNode)catN.getChildAt(0)).getVerb().getReference().getIndex()+pos;
 	}
-	private void addVerb(int pos,VerbTreeNode catN,Verb verbObj){
+	private void addVerb(int pos,VerbTreeNode catN,Verb verbObj) {
+		
 		try {
 			dk.addVerb(findLinearVerbIndex(pos,catN),verbObj);
 		} catch (LimitException e) { throw new RuntimeException(e); }
@@ -867,11 +857,13 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		checkAddVerbAction();
 		showAndSelect(verb);
 	}
-	private void addVerb(int pos,Verb verbObj){
+	private void addVerb(int pos,Verb verbObj) {
+		
 		addVerb(pos,findCategoryNode(verbObj.getCategory()),verbObj);
 	}
 
-	private void duplicateVerb(){
+	private void duplicateVerb() {
+		
 		final Verb oldVerb = selectedVerb;
 		final Verb newVerb = selectedVerb.clone(false);
 		
@@ -961,6 +953,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		};
 	}
 	private void deleteVerb(Verb mVerb) {
+		
 		boolean reloadOptions=ve.getRole()!=null && ve.getRole().getRole().getOptionIndex(mVerb.getLabel())>=0;
 		
 		// remove the verb tree node
@@ -976,7 +969,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		validate();
 	}
 
-	private VerbTreeNode findCategoryNode(String category){
+	private VerbTreeNode findCategoryNode(String category) {
 		return findCategoryNode(root,category);
 	}
 	private VerbTreeNode findCategoryNode(VerbTreeNode n,String category){
@@ -990,7 +983,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		return null;
 	}
 	
-	private VerbTreeNode findVerbNode(Verb verb){
+	private VerbTreeNode findVerbNode(Verb verb) {
 		VerbTreeNode cat=findCategoryNode(verb.getCategory());
 		if (cat==null) return null;
 		
@@ -1023,15 +1016,19 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		};
 	}
 	private void addCategory(Category cat) {		
+	
 		addCategory(dk.categories.getChildren().size(),cat);
 	}
+	
 	private void addCategory(int index,Category cat) {		
+		
 		cat.setParent(dk,index,dk.categories);
-		reload();
+		updateTreeNodeList();
 		showAndSelect(findCategoryNode(cat.getName()));
 	}
 	
-	private void renameSelectedCategory(String zLabel){
+	private void renameSelectedCategory(String zLabel) {
+		
 		final Category cat = selectedCat;
 		final String oldLabel = cat.getName();
 		
@@ -1061,7 +1058,9 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 			};
 		}
 	}
+	
 	private void renameCategory(Category cat,String zLabel) {
+		
 		// Alter all references to this verb label in all options
 		for (Verb zVerb: dk.getVerbs()) 
 			if (zVerb.getCategory().equalsIgnoreCase(cat.getName()))
@@ -1071,7 +1070,8 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		validate();
 	}
 	
-	private void renameSelectedVerb(String zLabel){
+	private void renameSelectedVerb(String zLabel) {
+		
 		final Verb verb = selectedVerb;
 		final String oldLabel = verb.getLabel();
 		if (zLabel==null || zLabel.equals(oldLabel)) return;
@@ -1102,6 +1102,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 	}
 	
 	private void renameVerb(Verb mVerb,String newLabel) {
+		
 		renameNode(false, mVerb.getLabel(), newLabel);
 		mVerb.setLabel(newLabel);
 		if (ve.getVerb()==mVerb)
@@ -1112,6 +1113,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 	}
 	
 	private void deleteSelectedCategory() {
+		
 		if (!selectedCat.hasAnyVerbs(dk)) {
 			final Category cat = selectedCat;
 			final int index = cat.getParent().getIndex(cat);
@@ -1129,6 +1131,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 		}
 	}
 	private void deleteCategory(Category mCat) {
+		
 			// remove the catgory from the category tree
 			String catName = mCat.getName();
 			mCat.getParent().removeChild(mCat);

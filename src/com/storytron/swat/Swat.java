@@ -171,31 +171,33 @@ public final class Swat {
 	private static JMenuBar menuBar;
 	protected JFrame myFrame;
 	private EditorEnum editorInFocus = EditorEnum.NoEditorHasFocus;
-	public JMenuItem openMenuItem,
-					saveMenuItem, 
-					undoMenuItem,
-					redoMenuItem,
-					cutMenuItem, 
-					copyMenuItem,
-					pasteMenuItem, 
-					copyOption,
-					pasteOption,
-					pasteOptionLink,
-					copyRole, 
-					pasteRole,
-					pasteRoleLink,
+	public JMenuItem 
+		newMenuItem,
+		openMenuItem,
+		saveMenuItem, 
+		undoMenuItem,
+		redoMenuItem,
+		cutMenuItem, 
+		copyMenuItem,
+		pasteMenuItem, 
+		copyOption,
+		pasteOption,
+		pasteOptionLink,
+		copyRole, 
+		pasteRole,
+		pasteRoleLink,
+		
+		verbEditorMenuItem, 
+		actorEditorMenuItem,
+		relationshipEditorMenuItem,
+		propEditorMenuItem, 
+		stageEditorMenuItem,
 					
-					verbEditorMenuItem, 
-					actorEditorMenuItem,
-					relationshipEditorMenuItem,
-					propEditorMenuItem, 
-					stageEditorMenuItem,
+		rehearsalLizardMenuItem, 
+		storytellerLizardMenuItem, 
+		comeFromLizardMenuItem, 
 					
-					rehearsalLizardMenuItem, 
-					storytellerLizardMenuItem, 
-					comeFromLizardMenuItem, 
-					
-					relationshipsMenuItem;
+		relationshipsMenuItem;
 	public Node clipboard;
 	public Script clipboardScript;
 	public Deikto dk;
@@ -691,7 +693,16 @@ public final class Swat {
 			}
 		});
 		
-		// TODO Open storyworld menu item
+		newMenuItem = new JMenuItem("New");
+		newMenuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		openMenuItem = new JMenuItem("Open");
 		openMenuItem.addActionListener(new ActionListener() {
 
@@ -700,7 +711,6 @@ public final class Swat {
 				openStoryworld(stwfile);
 				updateEditor();
 			}
-			
 		});
 		
 		saveMenuItem = new JMenuItem("Save");
@@ -1192,6 +1202,7 @@ public final class Swat {
 		storyworldMenu.add(relationshipsMenuItem);
 		storyworldMenu.add(terminationMenuItem);
 		storyworldMenu.addSeparator();
+		storyworldMenu.add(newMenuItem);
 		storyworldMenu.add(openMenuItem);
 		storyworldMenu.addSeparator();
 		storyworldMenu.add(saveMenuItem);

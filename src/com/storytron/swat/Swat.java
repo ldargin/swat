@@ -701,9 +701,13 @@ public final class Swat {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				stwfile = null;
+				
 				stwfile = createNewStoryworld(null);
-				if (stwfile != null) openStoryworld(stwfile); 
-				updateEditor();
+				if (stwfile != null) {
+					openStoryworld(stwfile); 
+					updateEditor();
+				}
 			}
 		});
 		

@@ -307,6 +307,7 @@ public final class Swat {
 	}
 	
 	public void openStoryworld(String stwfile) {
+		
 		try{
 			if (stwfile==null) { 
 				chooser.setFileFilter(swatFileFilter);
@@ -368,6 +369,7 @@ public final class Swat {
 	}
 	
 	private void updateEditor() {
+		
 		updateFrameTitle();
 
 		verbEditor.init(dk);
@@ -693,13 +695,15 @@ public final class Swat {
 			}
 		});
 		
+		// TODO New menu item
 		newMenuItem = new JMenuItem("New");
 		newMenuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				stwfile = createNewStoryworld(null);
+				if (stwfile != null) openStoryworld(stwfile); 
+				updateEditor();
 			}
 		});
 		
@@ -1390,6 +1394,7 @@ public final class Swat {
 			return true;
 		}
 	}
+	
 	/** 
 	 * Shows the save dialog if there are pending changes and quits.
 	 * */
@@ -1399,6 +1404,14 @@ public final class Swat {
 		quitting=false;
 		return res;
 	}
+	
+	public String createNewStoryworld(File saveFile) {
+		
+		
+		
+		return null; // TODO Change to return storyworld name
+	}
+	
 	/** 
 	 * Saves current storyworld to the given file. If the file is null
 	 * a file chooser is presented to the user.
@@ -1412,21 +1425,27 @@ public final class Swat {
 	private boolean writeStoryworld(File saveFile, final boolean playSound) {
 		
 		//  *** Write the XML string to Dictionary.xml ***
+		
+		// Use the filename passed in or ask the user for a directory and filename
 		File file = null;
 		if (saveFile != null) file = saveFile; 	
-		else { // if not, ask the user with a JFileChooser
+		else { 
 			chooser.setFileFilter(swatFileFilter);
 			chooser.setSelectedFile(new File(this.file.getName()));
+			
 			if (chooser.showSaveDialog(myFrame) == JFileChooser.APPROVE_OPTION) {
+				
 				file = Utils.addExtension(chooser.getSelectedFile(), ".stw");
 				Utils.setWorkingDirectory(chooser.getCurrentDirectory());
 			} else {
+				
 				Utils.setWorkingDirectory(chooser.getCurrentDirectory());
 				return false;
 			}
 		}
-		// Get the file where images will be saved
-		File rdir = Utils.getResourceDir(file);
+		
+		File rdir = Utils.getResourceDir(file); // Get the file where images will be saved
+		
 		// Warn the user if we showed the file chooser to him
 		// and there is a file with the same name than the resource directory.  
 		if (saveFile==null && rdir.exists() && !rdir.isDirectory()){

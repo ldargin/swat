@@ -303,15 +303,15 @@ public final class Swat {
 		File cd = Utils.getWorkingDirectory();
 		if (cd != null) chooser.setCurrentDirectory(cd);
 
-		openStoryworld(stwfile);		
+		openStoryworld(null);		
 		updateEditor();
 
 	}
 	
-	public void openStoryworld(String stwfile) {
+	public void openStoryworld(File stwfile) {
 		
 		try{
-			if (stwfile==null) { 
+			if (stwfile == null) { 
 				chooser.setFileFilter(swatFileFilter);
 				switch(chooser.showOpenDialog(myFrame)){
 				case JFileChooser.APPROVE_OPTION:
@@ -322,9 +322,10 @@ public final class Swat {
 					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
 					System.exit(0);
 				}
-			} else // TODO Need to handle when we just pass a filename in
-				file = new File(stwfile);
-			
+			} else {
+				file = stwfile;
+			}
+				
 			FileInputStream fis = new FileInputStream(file);
 			
 			dk = new Deikto(file);
@@ -340,33 +341,39 @@ public final class Swat {
 			if (!errors.isEmpty()) showLogIssues(errors);
 			
 		} catch (BadVersionException e){
+			
 			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
 			System.exit(0);
 		} catch (SAXParseException e) {
+			
 			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nThe file has an invalid format. Line: "+e.getLineNumber()+" Column: "+e.getColumnNumber(),"Reading error",e);
 			System.exit(0);
 		} catch (IOException e) {
+			
 			Utils.showErrorDialog(null, "There was an error when trying to access the file\n"+chooser.getSelectedFile().getPath(),"File error",e);
 			System.exit(0);
 		} catch (LimitException e) {
+			
 			e.printStackTrace();
 			Utils.displayLimitExceptionMessage(e,"File error","There was an error when reading the file\n"+chooser.getSelectedFile().getPath());
 			System.exit(0);
 		} catch (Deikto.ReadingException e) {
+			
 			e.printStackTrace();
 			switch(e.t) {
-			case OperatorDoesNotExist:
-				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown operator "+e.s0+"\nwhen reading the script\n"+e.s1,"File error");
-				break;
-			case WordDescriptionTraitDoesNotExist:
-				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown trait "+e.s0+"\n when reading traits of "+e.s1,"File error");
-				break;
-			case WordDescriptionPTraitDoesNotExist:
-				Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown perception trait "+e.s0+"\nwhen reading traits of "+e.s1+" towards "+e.s2,"File error");
-				break;
+				case OperatorDoesNotExist:
+					Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown operator "+e.s0+"\nwhen reading the script\n"+e.s1,"File error");
+					break;
+				case WordDescriptionTraitDoesNotExist:
+					Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown trait "+e.s0+"\n when reading traits of "+e.s1,"File error");
+					break;
+				case WordDescriptionPTraitDoesNotExist:
+					Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\n\nI found and unknown perception trait "+e.s0+"\nwhen reading traits of "+e.s1+" towards "+e.s2,"File error");
+					break;
 			}
 			System.exit(0);
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 			Utils.showErrorDialog(null, "There was an error while reading the file\n"+chooser.getSelectedFile().getPath()+"\nMake sure this file is a storyworld file and it is not corrupt.","Reading error",e);
 			System.exit(0);
@@ -700,16 +707,15 @@ public final class Swat {
 			}
 		});
 		
-		// TODO New menu item
 		newMenuItem = new JMenuItem("New");
 		newMenuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stwfile = null;
+				File stwfile = null;
 				
 				stwfile = createNewStoryworld();
-				if (stwfile != "") {
+				if (stwfile != null) {
 					openStoryworld(stwfile); 
 					updateEditor();
 				}
@@ -721,7 +727,7 @@ public final class Swat {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				openStoryworld(stwfile);
+				openStoryworld(null);
 				updateEditor();
 			}
 		});
@@ -1414,43 +1420,33 @@ public final class Swat {
 		return res;
 	}
 	
-	@SuppressWarnings("null")
-	public String createNewStoryworld() {
+	public File createNewStoryworld() {
 		
-		String newStoryworld = "";
 		File newFilename = null;
 		File resourceDirectory = null;
 		
-		File destinationDirectory = null;
-		String sourceDirectory = "";
-		
 		chooser.setDialogTitle("Create New Storyworld");
 		chooser.setFileFilter(swatFileFilter);
-		//chooser.setSelectedFile(new File(this.file.getName()));
 			
 		if (chooser.showSaveDialog(myFrame) == JFileChooser.APPROVE_OPTION) { // Save 
 			
-			newFilename = Utils.addExtension(chooser.getSelectedFile(), ".stw");
-			newStoryworld = newFilename.getName().substring(0, newFilename.getName().indexOf("."));
-			
-			destinationDirectory = chooser.getCurrentDirectory();
-			sourceDirectory = System.getProperty("user.dir");
-			
+			newFilename = Utils.addExtension(chooser.getSelectedFile(), ".stw");		
 			Utils.setWorkingDirectory(chooser.getCurrentDirectory());
-			resourceDirectory = Utils.getResourceDir(newFilename); // Get the file where images will be saved
+			resourceDirectory = Utils.getResourceDir(newFilename);
 		} else { // Cancel 
 			
 			Utils.setWorkingDirectory(chooser.getCurrentDirectory());
-			return newStoryworld;
+			return newFilename;
 		}
 		
-		// Warning if a resource subdirectory already exists for the storyworld they are trying to create  
+		// Display warning if a existing resource subdirectory has the same name as the storyworld being created  
 		if (resourceDirectory.exists()) {
 			if (resourceDirectory.isDirectory()) {
 				
 				JFrame parentComponent = getMyFrame(); 
 				
-				String message = "You must delete the subdirectory " + resourceDirectory.getName() + " before you can create your new " + newStoryworld + " storyworld.";
+				String storyworldName = newFilename.getName().substring(0, newFilename.getName().indexOf("."));
+				String message = "You must delete the subdirectory " + resourceDirectory.getName() + " before you can create your new " + storyworldName + " storyworld.";
 				String title = "Resource Subdirectory Already Exists!";
 					
 				JOptionPane.showOptionDialog(
@@ -1463,25 +1459,23 @@ public final class Swat {
 					new Object[]{"OK"}, 
 					"OK");
 					
-				newStoryworld = "";
-				return newStoryworld;
+				newFilename = null;
+				return newFilename;
 			}
 		}
 		
-		// TODO Copy starter.stw to selected directory with new filename
-		
+		// Copy starter.stw to selected directory with new filename
+		String sourceDirectory = System.getProperty("user.dir");
 		File sourceFile = new File(sourceDirectory + "/testdata/starter.stw");
-		File destinationFile;
+		File destinationFile = newFilename;
 		try {
-			destinationFile = new File(newFilename.getCanonicalPath());
 			Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			newFilename = null;
 			e1.printStackTrace();
 		}
 		
-		
-		return newStoryworld;
+		return newFilename;
 	}
 	
 	/** 

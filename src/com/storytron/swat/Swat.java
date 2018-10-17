@@ -37,6 +37,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.rmi.ConnectException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -703,8 +705,8 @@ public final class Swat {
 			public void actionPerformed(ActionEvent e) {
 				stwfile = null;
 				
-				stwfile = createNewStoryworld(null);
-				if (stwfile != null) {
+				stwfile = createNewStoryworld();
+				if (stwfile != "") {
 					openStoryworld(stwfile); 
 					updateEditor();
 				}
@@ -1409,11 +1411,65 @@ public final class Swat {
 		return res;
 	}
 	
-	public String createNewStoryworld(File saveFile) {
+	@SuppressWarnings("null")
+	public String createNewStoryworld() {
 		
+		String newStoryworld = "";
+		File newFilename = null;
+		File resourceDirectory = null;
 		
+		chooser.setDialogTitle("Create New Storyworld");
+		chooser.setFileFilter(swatFileFilter);
+		//chooser.setSelectedFile(new File(this.file.getName()));
+			
+		if (chooser.showSaveDialog(myFrame) == JFileChooser.APPROVE_OPTION) { // Save 
+			
+			newFilename = Utils.addExtension(chooser.getSelectedFile(), ".stw");
+			newStoryworld = newFilename.getName().substring(0, newFilename.getName().indexOf("."));
+			Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+			resourceDirectory = Utils.getResourceDir(newFilename); // Get the file where images will be saved
+		} else { // Cancel 
+			
+			Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+			return newStoryworld;
+		}
 		
-		return null; // TODO Change to return storyworld name
+		// Warning if a resource subdirectory already exists for the storyworld they are trying to create  
+		if (resourceDirectory.exists()) {
+			if (resourceDirectory.isDirectory()) {
+				
+				JFrame parentComponent = getMyFrame(); 
+				
+				String message = "You must delete the subdirectory " + resourceDirectory.getName() + " before you can create your new " + newStoryworld + " storyworld.";
+				String title = "Resource Subdirectory Already Exists";
+					
+				JOptionPane.showOptionDialog(
+					parentComponent,
+					message, 
+					title,
+					JOptionPane.OK_OPTION,
+					JOptionPane.WARNING_MESSAGE,
+					null,
+					new Object[]{"OK"}, 
+					"OK");
+					
+				newStoryworld = "";
+				return newStoryworld;
+			}
+		}
+		
+		// TODO Copy starter.stw to selected directory with new filename
+		
+	/*	File sourceFile = new File("/testdata/starter.stw");
+		File destinationFile = newFilename;
+		try {
+			Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		return newStoryworld;
 	}
 	
 	/** 

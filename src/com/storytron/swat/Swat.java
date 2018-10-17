@@ -322,19 +322,22 @@ public final class Swat {
 					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
 					System.exit(0);
 				}
-			} else 
+			} else // TODO Need to handle when we just pass a filename in
 				file = new File(stwfile);
 			
 			FileInputStream fis = new FileInputStream(file);
+			
 			dk = new Deikto(file);
 			dk.roleVerbs = new HashMap<Role,ArrayList<Verb>>();
 			dk.optionRoles = new HashMap<Role.Option,ArrayList<Role>>();
 			dk.readXML(fis, true);
+			
 			fis.close();
+			
 			dkResourceNames = dk.getResourceNames();
+			
 			final LinkedList<LogIssue> errors=dk.checkScripts(null,true);
-			if (!errors.isEmpty()) 
-				showLogIssues(errors);
+			if (!errors.isEmpty()) showLogIssues(errors);
 			
 		} catch (BadVersionException e){
 			Utils.showErrorDialog(null, "There was an error when reading the file\n"+chooser.getSelectedFile().getPath()+"\nI do not know how to load version "+e.version,"File error");
@@ -1418,6 +1421,9 @@ public final class Swat {
 		File newFilename = null;
 		File resourceDirectory = null;
 		
+		File destinationDirectory = null;
+		String sourceDirectory = "";
+		
 		chooser.setDialogTitle("Create New Storyworld");
 		chooser.setFileFilter(swatFileFilter);
 		//chooser.setSelectedFile(new File(this.file.getName()));
@@ -1426,6 +1432,10 @@ public final class Swat {
 			
 			newFilename = Utils.addExtension(chooser.getSelectedFile(), ".stw");
 			newStoryworld = newFilename.getName().substring(0, newFilename.getName().indexOf("."));
+			
+			destinationDirectory = chooser.getCurrentDirectory();
+			sourceDirectory = System.getProperty("user.dir");
+			
 			Utils.setWorkingDirectory(chooser.getCurrentDirectory());
 			resourceDirectory = Utils.getResourceDir(newFilename); // Get the file where images will be saved
 		} else { // Cancel 
@@ -1441,7 +1451,7 @@ public final class Swat {
 				JFrame parentComponent = getMyFrame(); 
 				
 				String message = "You must delete the subdirectory " + resourceDirectory.getName() + " before you can create your new " + newStoryworld + " storyworld.";
-				String title = "Resource Subdirectory Already Exists";
+				String title = "Resource Subdirectory Already Exists!";
 					
 				JOptionPane.showOptionDialog(
 					parentComponent,
@@ -1460,14 +1470,16 @@ public final class Swat {
 		
 		// TODO Copy starter.stw to selected directory with new filename
 		
-	/*	File sourceFile = new File("/testdata/starter.stw");
-		File destinationFile = newFilename;
+		File sourceFile = new File(sourceDirectory + "/testdata/starter.stw");
+		File destinationFile;
 		try {
+			destinationFile = new File(newFilename.getCanonicalPath());
 			Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
-		} catch (IOException e) {
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+			e1.printStackTrace();
+		}
+		
 		
 		return newStoryworld;
 	}

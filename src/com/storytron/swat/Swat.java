@@ -1465,8 +1465,7 @@ public final class Swat {
 		}
 		
 		// Copy starter.stw to selected directory with new filename
-		String sourceDirectory = System.getProperty("user.dir");
-		File sourceFile = new File(sourceDirectory + "/testdata/starter.stw");
+		File sourceFile = new File(System.getProperty("user.dir") + "/testdata/starter.stw");
 		File destinationFile = newFilename;
 		try {
 			Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);

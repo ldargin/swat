@@ -1220,7 +1220,7 @@ public final class Swat {
 			}
 		});
 
-		//TODO Menus
+		//TODO Menu items
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.add(newMenuItem);
 		fileMenu.add(openMenuItem);
@@ -1286,13 +1286,14 @@ public final class Swat {
 		editorsMenu.add(operatorMenuItem);
 		editorsMenu.add(copyrightMenuItem);
 
+		//TODO Menus
 		menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
 		menuBar.add(storyworldMenu);
+		menuBar.add(editorsMenu);
 		menuBar.add(lizardsMenu);
 		menuBar.add(swatMenu);
-		menuBar.add(editorsMenu);
 
 		myFrame.setJMenuBar(menuBar);
 

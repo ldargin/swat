@@ -890,7 +890,7 @@ public final class Swat {
 		});
 		pasteRoleLink.setEnabled(false);
 
-		comeFromLizardMenuItem = new JMenuItem("ComeFrom Lizard");
+		comeFromLizardMenuItem = new JMenuItem("ComeFrom");
 		comeFromLizardMenuItem.setToolTipText(Utils.toHtmlTooltipFormat("Lists all Roles that include this Verb as an Option. Double-click on the list item to jump straight to it."));
 		comeFromLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -900,7 +900,7 @@ public final class Swat {
 		});
 		comeFromLizardMenuItem.setEnabled(true);
 
-		JMenuItem notesSearchLizardMenuItem = new JMenuItem("Notes Search Lizard");
+		JMenuItem notesSearchLizardMenuItem = new JMenuItem("Notes Search");
 		notesSearchLizardMenuItem.setToolTipText(Utils.toHtmlTooltipFormat("Searches notes through your Scripts for a specified text string."));
 		notesSearchLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -909,7 +909,7 @@ public final class Swat {
 		});
 		notesSearchLizardMenuItem.setEnabled(true);
 
-		JMenuItem roleSearchLizardItem = new JMenuItem("Role Search Lizard");
+		JMenuItem roleSearchLizardItem = new JMenuItem("Role Search");
 		roleSearchLizardItem.setToolTipText(Utils.toHtmlTooltipFormat("Searches Roles through your Verbs for a specified text string."));
 		roleSearchLizardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -918,7 +918,7 @@ public final class Swat {
 		});
 		roleSearchLizardItem.setEnabled(true);
 
-		JMenuItem operatorSearchLizardMenuItem = new JMenuItem("Operator Search Lizard");
+		JMenuItem operatorSearchLizardMenuItem = new JMenuItem("Operator Search");
 		operatorSearchLizardMenuItem.setToolTipText(Utils.toHtmlTooltipFormat("Displays a list of the Operators in all the Scripts."));
 		operatorSearchLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -927,7 +927,7 @@ public final class Swat {
 		});
 		operatorSearchLizardMenuItem.setEnabled(true);
 
-		JMenuItem sniffyLizardMenuItem = new JMenuItem("Sniffy Lizard");
+		JMenuItem sniffyLizardMenuItem = new JMenuItem("Sniffy");
 		sniffyLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final LinkedList<LogIssue> errors=dk.checkScripts(null,true);
@@ -939,7 +939,7 @@ public final class Swat {
 			}
 		});
 		
-		rehearsalLizardMenuItem = new JMenuItem("Rehearsal Lizard");
+		rehearsalLizardMenuItem = new JMenuItem("Rehearsal");
 		rehearsalLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int stageTraits = dk.getStageTraits().size();
@@ -1045,7 +1045,7 @@ public final class Swat {
 		});
 		rehearsalLizardMenuItem.setEnabled(false);
 
-		storytellerLizardMenuItem = new JMenuItem("Storyteller Lizard");
+		storytellerLizardMenuItem = new JMenuItem("Storyteller");
 		storytellerLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Utils.setCursor(myFrame,Cursor.WAIT_CURSOR);
@@ -1115,7 +1115,7 @@ public final class Swat {
 			}
 		});
 
-		JMenuItem logLizardMenuItem = new JMenuItem("Log Lizard");
+		JMenuItem logLizardMenuItem = new JMenuItem("Log");
 		logLizardMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openLogLizard(myFrame);
@@ -1262,11 +1262,12 @@ public final class Swat {
 		lizardsMenu.add(rehearsalLizardMenuItem);
 		lizardsMenu.addSeparator();
 		lizardsMenu.add(comeFromLizardMenuItem);
-		lizardsMenu.add(roleSearchLizardItem);
-		lizardsMenu.add(operatorSearchLizardMenuItem);
-		lizardsMenu.add(notesSearchLizardMenuItem);
-		lizardsMenu.addSeparator();
 		lizardsMenu.add(sniffyLizardMenuItem);
+		lizardsMenu.addSeparator();
+		lizardsMenu.add(operatorSearchLizardMenuItem);
+		lizardsMenu.add(roleSearchLizardItem);
+		lizardsMenu.add(notesSearchLizardMenuItem);
+		
 		
 		JMenu editorsMenu = new JMenu("Editors");
 		editorsMenu.setMnemonic(KeyEvent.VK_D);
@@ -1283,8 +1284,8 @@ public final class Swat {
 		menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
-		menuBar.add(lizardsMenu);
 		menuBar.add(storyworldMenu);
+		menuBar.add(lizardsMenu);
 		menuBar.add(swatMenu);
 		menuBar.add(editorsMenu);
 

@@ -744,7 +744,7 @@ public final class Swat {
 		});
 		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke('S', keyMask, false));
 
-		JMenuItem saveAsMenuItem = new JMenuItem("Save as...");
+		JMenuItem saveAsMenuItem = new JMenuItem("Save As");
 		saveAsMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuAcceleratorEventProcessed = true;
@@ -1209,23 +1209,34 @@ public final class Swat {
 			}
 		});
 
+		//TODO Menus
+		JMenu fileMenu = new JMenu("File");
+		fileMenu.add(newMenuItem);
+		fileMenu.add(openMenuItem);
+		fileMenu.addSeparator();
+		fileMenu.add(saveMenuItem);
+		fileMenu.add(saveAsMenuItem);
+		fileMenu.addSeparator();
+		fileMenu.add(closeMenuItem);
+		
+		
 		JMenu swatMenu = new JMenu("Swat");
 		swatMenu.setMnemonic(KeyEvent.VK_S);
 		swatMenu.add(aboutSwatMenuItem);
 		swatMenu.add(soundsMenuItem);
-		swatMenu.addSeparator();
-		swatMenu.add(closeMenuItem);
+		//swatMenu.addSeparator();
+		//swatMenu.add(closeMenuItem);
 
 		JMenu storyworldMenu = new JMenu("Storyworld");
 		storyworldMenu.setMnemonic(KeyEvent.VK_W);
 		storyworldMenu.add(relationshipsMenuItem);
 		storyworldMenu.add(terminationMenuItem);
-		storyworldMenu.addSeparator();
-		storyworldMenu.add(newMenuItem);
-		storyworldMenu.add(openMenuItem);
-		storyworldMenu.addSeparator();
-		storyworldMenu.add(saveMenuItem);
-		storyworldMenu.add(saveAsMenuItem);
+		//storyworldMenu.addSeparator();
+		//storyworldMenu.add(newMenuItem);
+		//storyworldMenu.add(openMenuItem);
+		//storyworldMenu.addSeparator();
+		//storyworldMenu.add(saveMenuItem);
+		//storyworldMenu.add(saveAsMenuItem);
 
 		JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
@@ -1270,6 +1281,7 @@ public final class Swat {
 		editorsMenu.add(copyrightMenuItem);
 
 		menuBar = new JMenuBar();
+		menuBar.add(fileMenu);
 		menuBar.add(swatMenu);
 		menuBar.add(storyworldMenu);
 		menuBar.add(editMenu);

@@ -686,7 +686,7 @@ public final class Swat {
 		loadClip("eeew.wav");
 		
 		soundOn = true;
-		JMenuItem aboutSwatMenuItem = new JMenuItem("About...");
+		JMenuItem aboutSwatMenuItem = new JMenuItem("SWAT");
 		aboutSwatMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String versionLabel = "Swat version " + String.format("%04d", SharedConstants.version);
@@ -1220,10 +1220,9 @@ public final class Swat {
 		fileMenu.add(closeMenuItem);
 		
 		
-		JMenu swatMenu = new JMenu("Swat");
+		JMenu swatMenu = new JMenu("About");
 		swatMenu.setMnemonic(KeyEvent.VK_S);
 		swatMenu.add(aboutSwatMenuItem);
-		swatMenu.add(soundsMenuItem);
 		//swatMenu.addSeparator();
 		//swatMenu.add(closeMenuItem);
 
@@ -1254,6 +1253,8 @@ public final class Swat {
 		editMenu.add(copyRole);
 		editMenu.add(pasteRole);
 		editMenu.add(pasteRoleLink);
+		editMenu.addSeparator();
+		editMenu.add(soundsMenuItem);
 
 		JMenu lizardsMenu = new JMenu("Lizards");
 		lizardsMenu.setMnemonic(KeyEvent.VK_L);

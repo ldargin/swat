@@ -1282,10 +1282,10 @@ public final class Swat {
 
 		menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
-		menuBar.add(swatMenu);
-		menuBar.add(storyworldMenu);
 		menuBar.add(editMenu);
 		menuBar.add(lizardsMenu);
+		menuBar.add(storyworldMenu);
+		menuBar.add(swatMenu);
 		menuBar.add(editorsMenu);
 
 		myFrame.setJMenuBar(menuBar);

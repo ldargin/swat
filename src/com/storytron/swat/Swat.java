@@ -723,7 +723,7 @@ public final class Swat {
 			}
 		});
 		
-		openMenuItem = new JMenuItem("Open");
+		openMenuItem = new JMenuItem("Open...");
 		openMenuItem.addActionListener(new ActionListener() {
 
 			@Override
@@ -732,6 +732,7 @@ public final class Swat {
 				updateEditor();
 			}
 		});
+		openMenuItem.setAccelerator(KeyStroke.getKeyStroke('O', keyMask, false));
 		
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.addActionListener(new ActionListener() {
@@ -745,7 +746,7 @@ public final class Swat {
 		});
 		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke('S', keyMask, false));
 
-		JMenuItem saveAsMenuItem = new JMenuItem("Save As");
+		JMenuItem saveAsMenuItem = new JMenuItem("Save As...");
 		saveAsMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuAcceleratorEventProcessed = true;
@@ -848,6 +849,7 @@ public final class Swat {
 				// TODO Auto-generated method stub	
 			}
 		});
+		outsertMenuItem.setAccelerator(KeyStroke.getKeyStroke('T', keyMask, false));
 		outsertMenuItem.setEnabled(false);
 		
 		

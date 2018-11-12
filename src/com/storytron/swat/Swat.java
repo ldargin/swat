@@ -182,6 +182,7 @@ public final class Swat {
 		cutMenuItem, 
 		copyMenuItem,
 		pasteMenuItem, 
+		outsertMenuItem,
 		copyOption,
 		pasteOption,
 		pasteOptionLink,
@@ -840,6 +841,16 @@ public final class Swat {
 		pasteMenuItem.setAccelerator(KeyStroke
 				.getKeyStroke('V', keyMask, false));
 		
+		outsertMenuItem = new JMenuItem("Outsert");
+		outsertMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub	
+			}
+		});
+		outsertMenuItem.setEnabled(false);
+		
+		
 		copyOption = new JMenuItem("Copy Option");
 		copyOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1223,19 +1234,11 @@ public final class Swat {
 		JMenu swatMenu = new JMenu("About");
 		swatMenu.setMnemonic(KeyEvent.VK_S);
 		swatMenu.add(aboutSwatMenuItem);
-		//swatMenu.addSeparator();
-		//swatMenu.add(closeMenuItem);
 
 		JMenu storyworldMenu = new JMenu("Storyworld");
 		storyworldMenu.setMnemonic(KeyEvent.VK_W);
 		storyworldMenu.add(relationshipsMenuItem);
 		storyworldMenu.add(terminationMenuItem);
-		//storyworldMenu.addSeparator();
-		//storyworldMenu.add(newMenuItem);
-		//storyworldMenu.add(openMenuItem);
-		//storyworldMenu.addSeparator();
-		//storyworldMenu.add(saveMenuItem);
-		//storyworldMenu.add(saveAsMenuItem);
 
 		JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
@@ -1245,6 +1248,7 @@ public final class Swat {
 		editMenu.add(cutMenuItem);
 		editMenu.add(copyMenuItem);
 		editMenu.add(pasteMenuItem);
+		editMenu.add(outsertMenuItem);
 		editMenu.addSeparator();
 		editMenu.add(copyOption);
 		editMenu.add(pasteOption);

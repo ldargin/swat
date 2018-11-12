@@ -1135,7 +1135,7 @@ public final class Swat {
 			}
 		});
 
-		verbEditorMenuItem = new JMenuItem("Verb Editor");
+		verbEditorMenuItem = new JMenuItem("Verb");
 		verbEditorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setEditorInFocus(EditorEnum.VerbEditorHasFocus);
@@ -1143,7 +1143,7 @@ public final class Swat {
 		});
 		verbEditorMenuItem.setEnabled(false);
 
-		actorEditorMenuItem = new JMenuItem("Actor Editor");
+		actorEditorMenuItem = new JMenuItem("Actor");
 
 		actorEditorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1152,7 +1152,7 @@ public final class Swat {
 		});
 		actorEditorMenuItem.setEnabled(true);
 
-		relationshipEditorMenuItem = new JMenuItem("Relationship Editor");
+		relationshipEditorMenuItem = new JMenuItem("Relationship");
 		relationshipEditorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setEditorInFocus(EditorEnum.RelationshipEditorHasFocus);
@@ -1160,7 +1160,7 @@ public final class Swat {
 		});
 		relationshipEditorMenuItem.setEnabled(true);
 		
-		propEditorMenuItem = new JMenuItem("Prop Editor");
+		propEditorMenuItem = new JMenuItem("Prop");
 		propEditorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setEditorInFocus(EditorEnum.PropEditorHasFocus);
@@ -1168,7 +1168,7 @@ public final class Swat {
 		});
 		propEditorMenuItem.setEnabled(true);
 
-		stageEditorMenuItem = new JMenuItem("Stage Editor");
+		stageEditorMenuItem = new JMenuItem("Stage");
 		stageEditorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setEditorInFocus(EditorEnum.StageEditorHasFocus);
@@ -1176,14 +1176,14 @@ public final class Swat {
 		});
 		stageEditorMenuItem.setEnabled(true);
 
-		JMenuItem operatorMenuItem = new JMenuItem("Operator editor");
+		JMenuItem operatorMenuItem = new JMenuItem("Operator");
 		operatorMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showOperatorEditor();
 			}
 		});
 
-		JMenuItem copyrightMenuItem = new JMenuItem("Copyrights editor");
+		JMenuItem copyrightMenuItem = new JMenuItem("Copyrights");
 		copyrightMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showCopyrightEditor();
@@ -1222,7 +1222,7 @@ public final class Swat {
 			}
 		});
 
-		//TODO Menu items
+		//TODO Adding menu items
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.add(newMenuItem);
 		fileMenu.add(openMenuItem);
@@ -1288,7 +1288,7 @@ public final class Swat {
 		editorsMenu.add(operatorMenuItem);
 		editorsMenu.add(copyrightMenuItem);
 
-		//TODO Menus
+		//TODO Adding menus
 		menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);

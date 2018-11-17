@@ -700,17 +700,6 @@ public final class Swat {
 			}
 		});
 		
-		JMenuItem soundsMenuItem = new JMenuItem("Sounds...");
-		soundsMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				if (JOptionPane.showConfirmDialog(myFrame, "Keep sounds on?",
-						"Sounds", JOptionPane.YES_NO_OPTION) == 0)
-					soundOn = true;
-				else
-					soundOn = false;
-			}
-		});
-		
 		JCheckBoxMenuItem soundToggleMenuItem = new JCheckBoxMenuItem("Sounds On");
 		soundToggleMenuItem.setSelected(true);
 		
@@ -1272,7 +1261,6 @@ public final class Swat {
 		editMenu.add(pasteRoleLink);
 		editMenu.addSeparator();
 		editMenu.add(soundToggleMenuItem);
-		editMenu.add(soundsMenuItem);
 
 		JMenu lizardsMenu = new JMenu("Lizards");
 		lizardsMenu.setMnemonic(KeyEvent.VK_L);

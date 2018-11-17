@@ -71,6 +71,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -171,6 +172,7 @@ public final class Swat {
 	private static final long serialVersionUID = 1L;
 
 	private static JMenuBar menuBar;
+	private static JToolBar toolBar;
 	protected JFrame myFrame;
 	private EditorEnum editorInFocus = EditorEnum.NoEditorHasFocus;
 	public JMenuItem 
@@ -1298,6 +1300,9 @@ public final class Swat {
 		menuBar.add(swatMenu);
 
 		myFrame.setJMenuBar(menuBar);
+		
+		//TODO Adding toolbar
+		toolBar = new JToolBar();
 
 		verbEditor = new VerbEditor(this);
 		relationshipEditor = new RelationshipEditor(this);

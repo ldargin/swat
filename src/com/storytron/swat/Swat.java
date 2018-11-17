@@ -21,6 +21,7 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -71,6 +72,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -697,6 +699,7 @@ public final class Swat {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
+		
 		JMenuItem soundsMenuItem = new JMenuItem("Sounds...");
 		soundsMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
@@ -706,6 +709,14 @@ public final class Swat {
 				else
 					soundOn = false;
 			}
+		});
+		
+		JCheckBoxMenuItem soundToggleMenuItem = new JCheckBoxMenuItem("Sounds On");
+		soundToggleMenuItem.setSelected(true);
+		
+		soundToggleMenuItem.addItemListener((e) -> {
+			if (e.getStateChange() == ItemEvent.SELECTED) { soundOn = true; }
+			else { soundOn = false; }
 		});
 		
 		newMenuItem = new JMenuItem("New");
@@ -1260,6 +1271,7 @@ public final class Swat {
 		editMenu.add(pasteRole);
 		editMenu.add(pasteRoleLink);
 		editMenu.addSeparator();
+		editMenu.add(soundToggleMenuItem);
 		editMenu.add(soundsMenuItem);
 
 		JMenu lizardsMenu = new JMenu("Lizards");

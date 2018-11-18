@@ -62,6 +62,7 @@ import javax.swing.Action;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.FocusManager;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -1303,6 +1304,11 @@ public final class Swat {
 		
 		//TODO Adding toolbar
 		toolBar = new JToolBar();
+		
+		ImageIcon icon = new ImageIcon("res/images/AddButton.png");
+		JButton button = new JButton(icon);
+		toolBar.add(button);
+		myFrame.add(toolBar, BorderLayout.NORTH);
 
 		verbEditor = new VerbEditor(this);
 		relationshipEditor = new RelationshipEditor(this);
@@ -1728,7 +1734,7 @@ public final class Swat {
 		switch(ed){
 		case VerbEditorHasFocus:
 			enableVerbMenus();
-			myFrame.getContentPane().add(verbEditor.getMyPanel(),BorderLayout.CENTER);
+			myFrame.getContentPane().add(verbEditor.getMyPanel(), BorderLayout.CENTER);
 			verbEditorMenuItem.setEnabled(false);
 			break;
 		case ActorEditorHasFocus:

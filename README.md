@@ -1,4 +1,4 @@
-## Storyworld Authoring Tool
+## Storyworld Authoring Toolkit
 
 This is the source code for Chris Crawford's storyworld authoring tool. 
 

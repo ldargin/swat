@@ -1321,6 +1321,14 @@ public final class Swat {
 		JButton buttonOpen = new JButton(iconOpen);
 		JButton buttonSave = new JButton(iconSave);
 		
+		//TODO Enable toolbar buttons after hooking into actual functions
+		boolean disableButtons = true;
+		if (disableButtons) {
+			buttonNew.setEnabled(false);
+			buttonOpen.setEnabled(false);
+			buttonSave.setEnabled(false);
+		}
+		
 		boolean noBorders = true;
 		if (noBorders) {
 			Border emptyBorder = BorderFactory.createEmptyBorder();

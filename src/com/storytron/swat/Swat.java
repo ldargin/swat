@@ -59,6 +59,7 @@ import java.util.concurrent.Semaphore;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.FocusManager;
@@ -91,6 +92,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.border.Border;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.filechooser.FileFilter;
@@ -148,6 +150,7 @@ import com.storytron.uber.Script.Node;
 import com.storytron.uber.deiktotrans.DeiktoLoader.BadVersionException;
 import com.storytron.uber.operator.Operator;
 import com.storytron.uber.operator.OperatorDictionary;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * This class is the root of the Swat tool application. 
@@ -178,6 +181,11 @@ public final class Swat {
 	private static JToolBar toolBar;
 	protected JFrame myFrame;
 	private EditorEnum editorInFocus = EditorEnum.NoEditorHasFocus;
+	
+	public ImageIcon iconNew;
+	public ImageIcon iconOpen;
+	public ImageIcon iconSave;
+	
 	public JMenuItem 
 		newMenuItem,
 		openMenuItem,
@@ -682,6 +690,10 @@ public final class Swat {
 			}
 		});		
 
+		iconNew = new ImageIcon("res/icons/icon-new.png");
+		iconOpen = new ImageIcon("res/icons/icon-open.png");
+		iconSave = new ImageIcon("res/icons/icon-save.png");
+		
 		loadClip("add.aiff");
 		loadClip("copy.aiff");
 		loadClip("cut.aiff");
@@ -711,7 +723,7 @@ public final class Swat {
 			else { soundOn = false; }
 		});
 		
-		newMenuItem = new JMenuItem("New");
+		newMenuItem = new JMenuItem("New", iconNew);
 		newMenuItem.addActionListener(new ActionListener() {
 
 			@Override
@@ -726,7 +738,7 @@ public final class Swat {
 			}
 		});
 		
-		openMenuItem = new JMenuItem("Open...");
+		openMenuItem = new JMenuItem("Open...", iconOpen);
 		openMenuItem.addActionListener(new ActionListener() {
 
 			@Override
@@ -737,7 +749,7 @@ public final class Swat {
 		});
 		openMenuItem.setAccelerator(KeyStroke.getKeyStroke('O', keyMask, false));
 		
-		saveMenuItem = new JMenuItem("Save");
+		saveMenuItem = new JMenuItem("Save", iconSave);
 		saveMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuAcceleratorEventProcessed = true;
@@ -1305,9 +1317,23 @@ public final class Swat {
 		//TODO Adding toolbar
 		toolBar = new JToolBar();
 		
-		ImageIcon icon = new ImageIcon("res/images/AddButton.png");
-		JButton button = new JButton(icon);
-		toolBar.add(button);
+		JButton buttonNew = new JButton(iconNew);
+		JButton buttonOpen = new JButton(iconOpen);
+		JButton buttonSave = new JButton(iconSave);
+		
+		boolean noBorders = true;
+		if (noBorders) {
+			Border emptyBorder = BorderFactory.createEmptyBorder();
+			buttonNew.setBorder(emptyBorder);
+			buttonOpen.setBorder(emptyBorder);
+			buttonSave.setBorder(emptyBorder);
+		}
+		
+		toolBar.add(buttonNew);
+		toolBar.add(buttonOpen);
+		toolBar.addSeparator();
+		toolBar.add(buttonSave);
+		
 		myFrame.add(toolBar, BorderLayout.NORTH);
 
 		verbEditor = new VerbEditor(this);

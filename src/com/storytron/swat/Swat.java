@@ -1713,24 +1713,29 @@ public final class Swat {
 		switch(editorInFocus){
 		case VerbEditorHasFocus:
 			verbEditorMenuItem.setEnabled(true);
+			myFrame.getContentPane().remove(verbEditor.getMyPanel());
 			break;
 		case ActorEditorHasFocus:
 			actorEditorMenuItem.setEnabled(true);
+			myFrame.getContentPane().remove(actorEditor.getMyPanel());
 			break;
 		case PropEditorHasFocus:
 			propEditorMenuItem.setEnabled(true);
+			myFrame.getContentPane().remove(propEditor.getMyPanel());
 			break;
 		case StageEditorHasFocus:
 			stageEditorMenuItem.setEnabled(true);
+			myFrame.getContentPane().remove(stageEditor.getMyPanel());
 			break;
 		case RelationshipEditorHasFocus:
 			relationshipEditorMenuItem.setEnabled(true);
+			myFrame.getContentPane().remove(relationshipEditor);
 			break;
 		default:;
 		}
 		
 		editorInFocus = ed;
-		myFrame.getContentPane().removeAll();
+
 		switch(ed){
 		case VerbEditorHasFocus:
 			enableVerbMenus();

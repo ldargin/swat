@@ -1316,13 +1316,14 @@ public final class Swat {
 		
 		//TODO Adding toolbar
 		toolBar = new JToolBar();
+		toolBar.setRollover(true);
 		
-		JButton buttonNew = new JButton(iconNew);
+		JButton buttonNew = new JButton(iconNew);		
 		JButton buttonOpen = new JButton(iconOpen);
 		JButton buttonSave = new JButton(iconSave);
 		
 		//TODO Enable toolbar buttons after hooking into actual functions
-		boolean disableButtons = true;
+		boolean disableButtons = false;
 		if (disableButtons) {
 			buttonNew.setEnabled(false);
 			buttonOpen.setEnabled(false);
@@ -1331,10 +1332,10 @@ public final class Swat {
 		
 		boolean noBorders = true;
 		if (noBorders) {
-			Border emptyBorder = BorderFactory.createEmptyBorder();
-			buttonNew.setBorder(emptyBorder);
-			buttonOpen.setBorder(emptyBorder);
-			buttonSave.setBorder(emptyBorder);
+			Border invisibleBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+			buttonNew.setBorder(invisibleBorder);
+			buttonOpen.setBorder(invisibleBorder);
+			buttonSave.setBorder(invisibleBorder);
 		}
 		
 		toolBar.add(buttonNew);

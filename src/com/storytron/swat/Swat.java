@@ -723,42 +723,12 @@ public final class Swat {
 			else { soundOn = false; }
 		});
 		
-		newMenuItem = new JMenuItem("New", iconNew);
-		newMenuItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File stwfile = null;
-				
-				stwfile = createNewStoryworld();
-				if (stwfile != null) {
-					openStoryworld(stwfile); 
-					updateEditor();
-				}
-			}
-		});
+		newMenuItem = new JMenuItem(new NewStoryworldAction("New", iconNew, null, null));
 		
-		openMenuItem = new JMenuItem("Open...", iconOpen);
-		openMenuItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				openStoryworld(null);
-				updateEditor();
-			}
-		});
+		openMenuItem = new JMenuItem(new OpenStoryworldAction("Open...", iconOpen, null, KeyEvent.VK_O));
 		openMenuItem.setAccelerator(KeyStroke.getKeyStroke('O', keyMask, false));
 		
-		saveMenuItem = new JMenuItem("Save", iconSave);
-		saveMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				menuAcceleratorEventProcessed = true;
-				
-				writeStoryworld(dk.getFile());
-				undoManager.saving();
-				updateFrameTitle();
-			}
-		});
+		saveMenuItem = new JMenuItem(new SaveStoryworldAction("Save", iconSave, null, KeyEvent.VK_S));
 		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke('S', keyMask, false));
 
 		JMenuItem saveAsMenuItem = new JMenuItem("Save As...");
@@ -1318,20 +1288,12 @@ public final class Swat {
 		toolBar = new JToolBar();
 		toolBar.setRollover(true);
 		
-		JButton buttonNew = new JButton(iconNew);		
-		JButton buttonOpen = new JButton(iconOpen);
-		JButton buttonSave = new JButton(iconSave);
+		JButton buttonNew = new JButton(new NewStoryworldAction("", iconNew, "New Storyworld", null));	
+		JButton buttonOpen = new JButton(new OpenStoryworldAction("", iconOpen, "Open Storyworld", KeyEvent.VK_O));
+		JButton buttonSave = new JButton(new SaveStoryworldAction("", iconSave, "Save Storyworld", KeyEvent.VK_S));
 		
-		//TODO Enable toolbar buttons after hooking into actual functions
-		boolean disableButtons = false;
-		if (disableButtons) {
-			buttonNew.setEnabled(false);
-			buttonOpen.setEnabled(false);
-			buttonSave.setEnabled(false);
-		}
-		
-		boolean noBorders = true;
-		if (noBorders) {
+		boolean specialBorders = true;
+		if (specialBorders) {
 			Border invisibleBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 			buttonNew.setBorder(invisibleBorder);
 			buttonOpen.setBorder(invisibleBorder);
@@ -1340,7 +1302,7 @@ public final class Swat {
 		
 		toolBar.add(buttonNew);
 		toolBar.add(buttonOpen);
-		toolBar.addSeparator();
+		//toolBar.addSeparator();
 		toolBar.add(buttonSave);
 		
 		myFrame.add(toolBar, BorderLayout.NORTH);
@@ -2863,6 +2825,7 @@ public final class Swat {
 
 	/** A class for testing Swat functionality. */
 	public static class Test {
+
 		public static void showCopyrightEditor(Swat swat) {
 			swat.showCopyrightEditor();
 		}
@@ -2921,4 +2884,59 @@ public final class Swat {
 				swat.st.dispose();
 		}
 	}
+
+	@SuppressWarnings("serial")
+	class OpenStoryworldAction extends AbstractAction {
+		public OpenStoryworldAction(String text, ImageIcon icon, String description, Integer mnemonic) {
+			super(text, icon);
+			putValue(SHORT_DESCRIPTION, description);
+			putValue(MNEMONIC_KEY, mnemonic);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			openStoryworld(null);
+			updateEditor();
+		}
+	}
+	
+	@SuppressWarnings("serial")
+	class NewStoryworldAction extends AbstractAction {
+		public NewStoryworldAction(String text, ImageIcon icon, String description, Integer mnemonic) {
+			super(text, icon);
+			putValue(SHORT_DESCRIPTION, description);
+			putValue(MNEMONIC_KEY, mnemonic);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			File stwfile = null;
+			
+			stwfile = createNewStoryworld();
+			if (stwfile != null) {
+				openStoryworld(stwfile); 
+				updateEditor();
+			}
+		}
+	}
+	
+	@SuppressWarnings("serial")
+	class SaveStoryworldAction extends AbstractAction {
+		public SaveStoryworldAction(String text, ImageIcon icon, String description, Integer mnemonic) {
+			super(text, icon);
+			putValue(SHORT_DESCRIPTION, description);
+			putValue(MNEMONIC_KEY, mnemonic);
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			menuAcceleratorEventProcessed = true; // Needed?
+			
+			writeStoryworld(dk.getFile());
+			undoManager.saving();
+			updateFrameTitle();
+		}
+	}
+	
 }
+
+

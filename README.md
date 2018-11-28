@@ -5,7 +5,7 @@ This is the source code for Chris Crawford's storyworld authoring toolkit.
 ### Required Software
 
 - Eclipse IDE for Java Developers - Required if you want to download, build, and run the source code (we recommend installing the [Photon package](https://www.eclipse.org/downloads/eclipse-packages/) for your specific platform).
-- Git - Requited if you want to fork the repository and make changes to the source code. Instructions on how to [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Git
+- Git - Required if you want to fork the repository, make changes to the source code, and submit a pull request. Instructions on how to [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Git
 
 After installing and configuring the required software please download this repository and follow the instructions below to build and run the source code.
 

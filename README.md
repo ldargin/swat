@@ -4,10 +4,10 @@ This is the source code for Chris Crawford's storyworld authoring toolkit.
 
 ### Required Software
 
-- Git - Instructions on how to [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Git
-- Eclipse IDE for Java Developers - We recommend installing the [Photon package](https://www.eclipse.org/downloads/eclipse-packages/) for your platform.
+- Eclipse IDE for Java Developers - Required if you want to download, build, and run the source code (we recommend installing the [Photon package](https://www.eclipse.org/downloads/eclipse-packages/) for your specific platform).
+- Git - Requited if you want to fork the repository and make changes to the source code. Instructions on how to [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Git
 
-After installing and configuring the required software please clone or download this repository and follow the instructions below to run the code.
+After installing and configuring the required software please download this repository and follow the instructions below to build and run the source code.
 
 
 ### In Eclipse
@@ -27,6 +27,6 @@ After installing and configuring the required software please clone or download 
 
 ### In SWAT
 
-1. In the Open dialog navigate to the SWAT/res/data/ folder and select a storyworld file (storyworld files have a .stw extension).
+1. In the Open dialog navigate to the SWAT/res/data/ folder and select the ChitChat storyworld file (storyworld files have a .stw extension).
 2. Click the Open button to open the selected storyworld in SWAT.
-3. Select Lizards > Storyteller Lizard from the Lizards menu to run the storyworld.
+3. Select Storyteller from the Lizards menu to run the storyworld.

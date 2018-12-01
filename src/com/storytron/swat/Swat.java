@@ -707,10 +707,10 @@ public final class Swat {
 		JMenuItem aboutSwatMenuItem = new JMenuItem("SWAT");
 		aboutSwatMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String versionLabel = "Swat version " + String.format("%04d", SharedConstants.version);
+				String versionLabel = "Swat v" + String.valueOf(SharedConstants.version);
 		
 				JOptionPane.showMessageDialog(myFrame.getContentPane(),
-						versionLabel + "\nCopyright \u00A9 2009 Storytron", "About Swat",
+						versionLabel + "\nCopyright \u00A9 2018 Storytron.org", "About Swat",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

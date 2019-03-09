@@ -249,7 +249,7 @@ public final class Swat {
 	private DefaultListModel logListModel;
 	private LogDownloaderThread logDownloader;
 	public LogDownloadManager logManager;
-	private File file=new File(""); // for inclusion in the main title bar
+	private File file;
 	private RelationshipSettings relationshipSettings;
 	private TerminationSettings terminationSettings;
 	private Storyteller st; 
@@ -317,26 +317,34 @@ public final class Swat {
 		File cd = Utils.getWorkingDirectory();
 		if (cd != null) chooser.setCurrentDirectory(cd);
 
+		file = new File(""); // Filename will be displayed in title bar
 		openStoryworld(null);		
 		updateEditor();
-
 	}
 	
 	public void openStoryworld(File stwfile) {
 		
+		
 		try{
-			if (stwfile == null) { 
+			if (stwfile == null) { // Choose a storyworld file to open
 				chooser.setFileFilter(swatFileFilter);
-				switch(chooser.showOpenDialog(myFrame)){
-				case JFileChooser.APPROVE_OPTION:
-					file = chooser.getSelectedFile();
-					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
-					break;
-				default:
-					Utils.setWorkingDirectory(chooser.getCurrentDirectory());
-					System.exit(0);
+				
+				switch(chooser.showOpenDialog(myFrame)) {
+					case JFileChooser.APPROVE_OPTION:
+						file = chooser.getSelectedFile();
+						Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+						break;
+					case JFileChooser.CANCEL_OPTION:
+						Utils.setWorkingDirectory(chooser.getCurrentDirectory());
+						
+						if (file.length() == 0 ) { // A storyworld file is not already open then exit the application
+							System.exit(0);
+							break;
+						} else { // Just close the dialog
+							break;
+						}
 				}
-			} else {
+			} else { // Open the storyworld file passed in as a parameter
 				file = stwfile;
 			}
 				

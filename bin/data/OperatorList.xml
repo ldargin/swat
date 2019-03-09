@@ -3499,13 +3499,6 @@
 		<Menu>Chosen</Menu>
 		<ToolTipText>produces the 15Quantifier of this Option</ToolTipText>
 	</Operator>
-	<Operator Label="Protagonist" arg_count="0">
-		<CodeLabel>Protagonist</CodeLabel>
-		<OperatorType>Read</OperatorType>
-		<DataType>Actor</DataType>
-		<Menu>Global</Menu>
-		<ToolTipText>produces the Actor played by the human</ToolTipText>
-	</Operator>
 	<Operator Label="Active" arg_count="1">
 		<CodeLabel>Active</CodeLabel>
 		<OperatorType>Read</OperatorType>

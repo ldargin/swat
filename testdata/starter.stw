@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<dictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" inactivityTimeout="15" version="2742" xsi:noNamespaceSchemaLocation="Dictionary.xsd">
+<dictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" inactivityTimeout="15" version="2744" xsi:noNamespaceSchemaLocation="Dictionary.xsd">
 <dictionaryVersion Label="0.939"/>
 <copyright/>
-<startingVerb Label="your first verb"/>
+<startingVerb Label="once upon a time"/>
+<startingRole Label="Fate"/>
+<startingOption Label="your first verb"/>
 <propTraits/>
 <propTextTraits/>
 <stageTraits/>
@@ -31,7 +33,7 @@
 <attribute Name="howLongToSpy">0</attribute>
 </attributes>
 </actor>
-<actor Label="Protagonist">
+<actor Label="First Actor (p)">
 <attributes>
 <attribute Name="description">the player</attribute>
 <attribute Name="active">true</attribute>
@@ -49,7 +51,7 @@
 </actorSet>
 <pValueSet>
 <pValues OfWhom="Fate"/>
-<pValues OfWhom="Protagonist"/>
+<pValues OfWhom="First Actor (p)"/>
 </pValueSet>
 <propSet>
 <prop Label="BareProp">
@@ -57,7 +59,7 @@
 <carried>false</carried>
 <visible>false</visible>
 <inPlay>true</inPlay>
-<owner>Protagonist</owner>
+<owner>First Actor (p)</owner>
 <location>nowhere</location>
 </prop>
 </propSet>
@@ -118,7 +120,7 @@
 <token Arg="" Label="AllActorsWho">
 <token Arg="" Label="AreSameActor">
 <token Arg="" Label="CandidateActor"/>
-<token Arg="" Label="Protagonist"/>
+<token Arg="First Actor (p)" Label="ActorConstant"/>
 </token>
 </token>
 </token>

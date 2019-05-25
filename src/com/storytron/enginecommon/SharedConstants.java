@@ -5,7 +5,7 @@ public final class SharedConstants {
 	private static String baseServiceName = "SwatServer";
 	/** Value used to detect if the client will have problems when using the server. */
 	public static int REMOTE_INTERFACE_VERSION = 3024;
-	public static double version = 1.1; 	// The current version of Swat
+	public static double version = 1.3; 	// The current version of Swat
 	private static int basePort = 1100;
 	public  static final int numServices = 5;
 	private static byte defaultServiceNum = 2;

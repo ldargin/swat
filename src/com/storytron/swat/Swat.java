@@ -718,7 +718,7 @@ public final class Swat {
 				String versionLabel = "Swat v" + String.valueOf(SharedConstants.version);
 		
 				JOptionPane.showMessageDialog(myFrame.getContentPane(),
-						versionLabel + "\nCopyright \u00A9 2018 Storytron.org", "About Swat",
+						versionLabel + "\nCopyright \u00A9 2019 Storytron.org", "About Swat",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

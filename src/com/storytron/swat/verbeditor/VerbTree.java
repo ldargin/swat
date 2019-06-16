@@ -358,14 +358,14 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 				case KeyEvent.VK_F2:
 					{
 						TreePath path=tree.getSelectionPath();
-						if (path!=null && !isInSystemCategory((VerbTreeNode)path.getLastPathComponent())) 
+						if (path!=null && !isSystemVerb((VerbTreeNode)path.getLastPathComponent())) 
 							startEditing(path);
 					}
 					break;
 				case KeyEvent.VK_DELETE:
 					{
 						TreePath path=tree.getSelectionPath();
-						if (path!=null && !isInSystemCategory((VerbTreeNode)path.getLastPathComponent())) { 
+						if (path!=null && !isSystemVerb((VerbTreeNode)path.getLastPathComponent())) { 
 							if (((VerbTreeNode)path.getLastPathComponent()).isVerb())
 								deleteSelectedVerb();
 							else 
@@ -412,7 +412,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 			  		if (useVerbMenu) 			  			
 				  		ve.checkAddOptionButton();
 		  			
-					boolean isSystemCategory = isInSystemCategory(leaf);
+					boolean isSystemCategory = isSystemVerb(leaf);
 					deleteMenuItem.setEnabled(!isSystemCategory && (!leaf.isCategory() || !leaf.getCategory().hasAnyVerbs(dk)));
 					duplicateverbMenuItem.setEnabled(!isSystemCategory && leaf.isVerb());
 					renameMenuItem.setEnabled(!isSystemCategory);
@@ -505,13 +505,30 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 	  validate();
 	}
 	
-	/** Used to tell if we are about to edit a node in the system category. 
-	 * We should prevent such editings. 
-	 * */
-	private boolean isInSystemCategory(VerbTreeNode n){
-		return n.isVerb() && n.getVerb().getCategory().equals("System")
-		|| n.isCategory() && n.getCategory().getName().equals("System");
+	// Used to tell if we are attempting to edit a verb or category node that is classified as a System verb (we prevent such editing)
+	// Note: "System" identifier is retained for backwards compatibility 
+	private boolean isSystemVerb(VerbTreeNode n) {
+		Boolean isSystemVerb = false;
+		
+		if (n.isVerb()) {
+			String verbCategory = n.getVerb().getCategory();
+			
+			if (verbCategory.contains("System") || verbCategory.contains("Story") || verbCategory.contains("Alarm") || verbCategory.contains("Travel")) {
+				isSystemVerb = true;
+			}
+		}
+		
+		if (n.isCategory()) {
+			String category = n.getCategory().getName();
+			
+			if (category.contains("System") || category.contains("Story") || category.contains("Alarm") || category.contains("Travel") ) {
+				isSystemVerb = true;
+			}
+		}
+		
+		return isSystemVerb;
 	}
+	
 	@Override
 	public boolean requestFocusInWindow(){
 		return tree.requestFocusInWindow();
@@ -1220,7 +1237,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 				return;
 			}
 			VerbTreeNode draggedNode = (VerbTreeNode)path.getLastPathComponent();
-			if (!isInSystemCategory(draggedNode)){
+			if (!isSystemVerb(draggedNode)){
 				Transferable trans = new VerbTransferable(draggedNode);
 				dragSource.startDrag(arg0, DragSource.DefaultMoveNoDrop, trans, this);
 			}
@@ -1252,7 +1269,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 					arg0.getDragSourceContext().setCursor(DragSource.DefaultMoveDrop);
 				else
 					arg0.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
-			} else if (isInSystemCategory(dropTargetNode) || dropTargetNode.isVerb() && source.isCategory())
+			} else if (isSystemVerb(dropTargetNode) || dropTargetNode.isVerb() && source.isCategory())
 					arg0.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
 				else
 					arg0.getDragSourceContext().setCursor(DragSource.DefaultMoveDrop);
@@ -1303,7 +1320,7 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 				nodeName =((VerbTreeNode)droppedNode).toString();
 				if (path != null) {
 					dropNode = (VerbTreeNode)path.getLastPathComponent();
-					if (isInSystemCategory(dropNode)){
+					if (isSystemVerb(dropNode)){
 						arg0.dropComplete(dropped);
 						return;
 					}

@@ -509,21 +509,13 @@ public class VerbTree extends JPanel implements WindowFocusListener, AWTEventLis
 	// Note: "System" identifier is retained for backwards compatibility 
 	private boolean isSystemVerb(VerbTreeNode n) {
 		Boolean isSystemVerb = false;
+		String category = "";
 		
-		if (n.isVerb()) {
-			String verbCategory = n.getVerb().getCategory();
+		if (n.isVerb()) { category = n.getVerb().getCategory(); }
+		else if (n.isCategory()) { category = n.getCategory().getName(); }
 			
-			if (verbCategory.contains("System") || verbCategory.contains("Story") || verbCategory.contains("Alarm") || verbCategory.contains("Travel")) {
-				isSystemVerb = true;
-			}
-		}
-		
-		if (n.isCategory()) {
-			String category = n.getCategory().getName();
-			
-			if (category.contains("System") || category.contains("Story") || category.contains("Alarm") || category.contains("Travel") ) {
-				isSystemVerb = true;
-			}
+		if (category.contains("System") || category.contains("Story") || category.contains("Alarm") || category.contains("Travel")) {
+			isSystemVerb = true;
 		}
 		
 		return isSystemVerb;

@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import sun.rmi.transport.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.Action;
@@ -79,8 +80,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import Engine.enginePackage.Janus;
-
 import com.storytron.enginecommon.BadStoryworldException;
 import com.storytron.enginecommon.BgItemData;
 import com.storytron.enginecommon.EngineDiedException;
@@ -105,6 +104,8 @@ import com.storytron.swat.util.OSXAdapter;
 import com.storytron.swat.util.ProgressDialog;
 import com.storytron.uber.Deikto;
 import com.storytron.uber.Sentence;
+
+import engPackage.Janus;
 
 
 /**
@@ -420,7 +421,7 @@ public class Storyteller extends JFrame {
 			} catch (ConnectException ce) {
 				// Try to connect through http tunnelling
 				try {
-					RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
+//					RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
 					janus = (StorytellerRemote)
 						Naming.lookup(SharedConstants.getRMIServiceString(SharedConstants.getDefaultServiceNum()));
 				} catch (Exception e2) {

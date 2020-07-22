@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -13,6 +14,7 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 import com.storytron.swat.util.PopupButton;
+import com.storytron.swat.verbeditor.ScriptEditor.OperatorAction;
 import com.storytron.uber.operator.OperatorDictionary;
 
 /**
@@ -66,19 +68,22 @@ public final class OperatorMenu {
 		myButton.setEnabled(false);
 	}
 
-	
+	public void setMenuActionsLL(LinkedList<?> menuActions) {
+		setMenuActions(menuActions);
+
+	}
 	/** <p>Sets the actions for this menu. If the argument is null or empty
 	 * the menu is disabled. </p> 
 	 * */
-	public void setMenuActions(Iterable<ScriptEditor<?>.OperatorAction> menuActions) {
-		this.menuActions = menuActions;
+	public void setMenuActions(Object menuActions) {
+		this.menuActions = (Iterable<ScriptEditor<?>.OperatorAction>)menuActions;
 		myPopup.removeAll();
 
-		if (menuActions==null || !menuActions.iterator().hasNext()) {
+		if (menuActions==null || !(((OperatorDictionary) menuActions).iterator().hasNext())) {
 			myButton.setEnabled(false);				
 			return;
 		}
-		for (ScriptEditor<?>.OperatorAction opAction: menuActions){
+		for (ScriptEditor<?>.OperatorAction opAction: (Iterable<ScriptEditor<?>.OperatorAction>)menuActions){
 			JMenuItem mi = new JMenuItem(opAction);
 			opAction.install(mi);
 			myPopup.add(mi);

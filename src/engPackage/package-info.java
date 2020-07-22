@@ -41,4 +41,4 @@ given run of the engine.
 When collecting detailed log data, the EngineLogger is fed by the 
 LogDataCollector with request of specific portions of log data.  
  */
-package Engine.enginePackage;
+package engPackage;

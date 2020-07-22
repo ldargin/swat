@@ -1,13 +1,14 @@
-package Engine.enginePackage;
+package engPackage;
 
 import java.util.ArrayList;
 
 import storyTellerPackage.Storyteller;
-import Engine.enginePackage.Janus.StopEngineException;
 
 import com.storytron.enginecommon.LabeledSentence;
 import com.storytron.enginecommon.MenuElement;
 import com.storytron.enginecommon.StorytellerReturnData;
+
+import engPackage.Janus.StopEngineException;
 
 /** 
  * The default {@link EnginePlayerIO} requests input from {@link Storyteller}.

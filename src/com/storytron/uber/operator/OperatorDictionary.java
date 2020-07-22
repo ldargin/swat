@@ -3,6 +3,7 @@ package com.storytron.uber.operator;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -21,10 +22,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import Engine.enginePackage.Interpreter;
-
 import com.storytron.enginecommon.Utils;
 import com.storytron.uber.operator.Operator.OpType;
+
+import engPackage.Interpreter;
 
 
 /**
@@ -147,6 +148,25 @@ public final class OperatorDictionary implements Iterable<Operator> {
 	private static EnumMap<Operator.Type,Operator> allWordsWhich = new EnumMap<Operator.Type,Operator>(Operator.Type.class);
 	private static EnumMap<Operator.Type,Operator> acceptableOps = new EnumMap<Operator.Type,Operator>(Operator.Type.class);
 	
+	/** Call this to get the method to execute for a given operator. */
+	public static Method getMethod(Operator.OpType operatorType,String codeLabel){
+		if (!codeLabel.equals("no method")) {
+			String prefix;
+			if (operatorType==Operator.OpType.Read)
+				prefix = "push".concat(codeLabel);
+			else if (operatorType==Operator.OpType.Write)
+				prefix = "pop".concat(codeLabel);
+			else
+				prefix = codeLabel;
+			try {
+				return Interpreter.class.getMethod(prefix, (Class<?>[])null);
+			} catch (java.lang.NoSuchMethodException e) {
+				System.out.println("error: no such method: " + prefix);
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Loads operators from a file on disk.
 	 * @param filename name of the file to load
@@ -200,7 +220,7 @@ public final class OperatorDictionary implements Iterable<Operator> {
  					tooltipText=childNodes.item(j).getTextContent();
 	 		}
 	 		
-	 		Operator operator = OperatorFactory.createOperator(junk1.getNodeValue(), cArgs,Interpreter.getMethod(operatorType,codeLabel));
+	 		Operator operator = OperatorFactory.createOperator(junk1.getNodeValue(), cArgs, getMethod(operatorType,codeLabel));
 	 		operator.setIteratorType(iteratorType);
  			if (operatorType!=null)
  				operator.setOperatorType(operatorType);

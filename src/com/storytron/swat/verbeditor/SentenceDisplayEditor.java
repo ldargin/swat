@@ -37,8 +37,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JToggleButton;
 import javax.swing.ToolTipManager;
 
-import Engine.enginePackage.Interpreter;
-
 import com.storytron.enginecommon.Pair;
 import com.storytron.enginecommon.SentencesPanel;
 import com.storytron.enginecommon.Utils;
@@ -53,6 +51,8 @@ import com.storytron.uber.Sentence;
 import com.storytron.uber.Verb;
 import com.storytron.uber.operator.Operator;
 import com.storytron.uber.operator.OperatorDictionary;
+
+import engPackage.Interpreter;
 
 /** 
  * This class implements an editor for configuring how sentences should be displayed

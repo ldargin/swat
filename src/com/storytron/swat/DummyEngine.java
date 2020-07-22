@@ -1,11 +1,11 @@
 package com.storytron.swat;
 
-import Engine.enginePackage.AbstractEngine;
-
 import com.storytron.uber.Script;
 import com.storytron.uber.ScriptPath;
 import com.storytron.uber.Sentence;
 import com.storytron.uber.operator.Operator;
+
+import engPackage.AbstractEngine;
 
 /** 
  * Empty implementation of the engine methods called by the interpreter.

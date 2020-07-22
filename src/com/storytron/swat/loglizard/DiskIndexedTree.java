@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import Engine.enginePackage.TreeLogger;
-
 import com.storytron.swat.util.BufferedArray;
 import com.storytron.swat.util.CachedArray;
 import com.storytron.swat.util.Compressed;
 import com.storytron.swat.util.CompressedArray;
 import com.storytron.swat.util.DiskArray;
+
+import engPackage.TreeLogger;
 
 /** 
  * Compact representation of a tree.

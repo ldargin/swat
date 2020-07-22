@@ -16,14 +16,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.tree.TreePath;
 
-import Engine.enginePackage.EngineLogger;
-
 import com.storytron.enginecommon.Pair;
 import com.storytron.enginecommon.SessionLogoutException;
 import com.storytron.enginecommon.Triplet;
 import com.storytron.enginecommon.Utils;
 import com.storytron.swat.Swat.LogDownloaderThread;
 import com.storytron.swat.util.Compressed;
+
+import engPackage.EngineLogger;
 
 /** A class for managing downloading of log data.
  * <p> 

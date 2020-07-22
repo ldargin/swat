@@ -1,4 +1,4 @@
-package Engine.enginePackage;
+package engPackage;
 
 import java.io.IOException;
 import java.io.InputStream;

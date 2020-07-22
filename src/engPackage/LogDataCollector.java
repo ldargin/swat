@@ -1,4 +1,4 @@
-package Engine.enginePackage;
+package engPackage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -13,10 +13,6 @@ import java.util.TreeSet;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import Engine.enginePackage.Janus.SessionData;
-import Engine.enginePackage.Janus.StopEngineException;
-import Engine.enginePackage.Janus.SessionData.Command;
-
 import com.storytron.enginecommon.Pair;
 import com.storytron.enginecommon.SessionLogoutException;
 import com.storytron.enginecommon.StorytellerRemote;
@@ -27,16 +23,20 @@ import com.storytron.swat.util.DiskArray;
 import com.storytron.test.JanusStressTest;
 import com.storytron.uber.Deikto;
 
+import engPackage.Janus.SessionData;
+import engPackage.Janus.StopEngineException;
+import engPackage.Janus.SessionData.Command;
+
 /**
  * Takes care of collecting log data for a given session.
  * <p> 
  * While a story is being played with logging turned on, successive states
  * of the engine are saved to disk (see 
- * ({@link #saveEngineState(Engine.enginePackage.Janus.SessionData)},
- * {@link #saveStateBuffer(Engine.enginePackage.Janus.SessionData)}). 
+ * ({@link #saveEngineState(engPackage.Janus.SessionData)},
+ * {@link #saveStateBuffer(engPackage.Janus.SessionData)}). 
  * Disk space is limited to a few states per session by discarding 
  * states as new ones are available
- * ({@link #dropEngineStates(Engine.enginePackage.Janus.SessionData)}).
+ * ({@link #dropEngineStates(engPackage.Janus.SessionData)}).
  * <p>
  * An engine thread is created to collect data for requests. 
  * When a request arrives, the log data is collected by picking the

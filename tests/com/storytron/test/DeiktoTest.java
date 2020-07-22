@@ -20,8 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import storyTellerPackage.SavedStory;
-import Engine.enginePackage.Janus;
-import Engine.enginePackage.StorytellerPlayerIO;
 
 import com.storytron.enginecommon.BadStoryworldException;
 import com.storytron.enginecommon.EngineDiedException;
@@ -36,6 +34,9 @@ import com.storytron.uber.FloatTrait;
 import com.storytron.uber.Prop;
 import com.storytron.uber.deiktotrans.DeiktoLoader.BadVersionException;
 import com.storytron.uber.operator.OperatorDictionary;
+
+import engPackage.Janus;
+import engPackage.StorytellerPlayerIO;
 
 
 public class DeiktoTest {

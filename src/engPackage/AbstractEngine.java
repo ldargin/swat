@@ -1,4 +1,4 @@
-package Engine.enginePackage;
+package engPackage;
 
 import com.storytron.uber.Script;
 import com.storytron.uber.ScriptPath;

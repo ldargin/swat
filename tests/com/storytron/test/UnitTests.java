@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import com.storytron.enginecommon.Graph;
 
-import Engine.enginePackage.CustomRandom;
-import Engine.enginePackage.Statistics;
+import engPackage.CustomRandom;
+import engPackage.Statistics;
 
 
 /** Test of various features of Swat GUI. */

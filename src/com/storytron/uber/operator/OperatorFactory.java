@@ -2,14 +2,14 @@ package com.storytron.uber.operator;
 
 import java.lang.reflect.Method;
 
-import Engine.enginePackage.Interpreter;
-
 import com.storytron.uber.Actor;
 import com.storytron.uber.FloatTrait;
 import com.storytron.uber.TextTrait;
 import com.storytron.uber.Actor.PTraitType;
 import com.storytron.uber.Deikto.TraitType;
 import com.storytron.uber.operator.OperatorDictionary.Menu;
+
+import engPackage.Interpreter;
 
 /**
  * <p>In this class methods we group the nuances of instantiating different

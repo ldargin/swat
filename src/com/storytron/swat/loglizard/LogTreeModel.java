@@ -14,11 +14,11 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import Engine.enginePackage.EngineLogger;
-import Engine.enginePackage.EngineLogger.MsgType;
-
 import com.storytron.enginecommon.Utils;
 import com.storytron.swat.util.Compressed;
+
+import engPackage.EngineLogger;
+import engPackage.EngineLogger.MsgType;
 
 /** 
  * A tree model that manages a big log tree. It uses disk storage

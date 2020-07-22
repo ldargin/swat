@@ -859,7 +859,7 @@ public abstract class ScriptEditor <ContainerState> {
 				l.add(opAction);
 				theDynamicTree.addOperatorToValidList(op,null);
 			}
-			om.setMenuActions(l);
+			om.setMenuActionsLL(l);
 		}
 		// Add constant operators
 		for(Operator op:swat.dk.getOperatorDictionary().getOperators(OperatorDictionary.Menu.NONE)) {

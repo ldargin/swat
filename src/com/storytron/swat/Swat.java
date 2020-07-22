@@ -112,7 +112,6 @@ import org.xml.sax.SAXParseException;
 
 import storyTellerPackage.SavedStory;
 import storyTellerPackage.Storyteller;
-import Engine.enginePackage.Janus;
 
 import com.storytron.enginecommon.BadStoryworldException;
 import com.storytron.enginecommon.IncompatibleVersionException;
@@ -151,6 +150,8 @@ import com.storytron.uber.deiktotrans.DeiktoLoader.BadVersionException;
 import com.storytron.uber.operator.Operator;
 import com.storytron.uber.operator.OperatorDictionary;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import engPackage.Janus;
 
 /**
  * This class is the root of the Swat tool application. 
@@ -1000,7 +1001,7 @@ public final class Swat {
 							} catch (ConnectException ce) {
 								// Try to connect through http tunnelling
 								try {
-									RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
+	//								RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
 									swatJanus = (SwatRemote)
 									Naming.lookup(SharedConstants.getRMIServiceString(SharedConstants.getDefaultServiceNum()));
 								} catch (Exception e2) {
@@ -1081,7 +1082,7 @@ public final class Swat {
 								} catch (ConnectException ce) {
 									// Try to connect through http tunnelling
 									try {
-										RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
+		//								RMISocketFactory.setSocketFactory(new sun.rmi.transport.proxy.RMIHttpToCGISocketFactory());
 										swatJanus = (SwatRemote)
 											Naming.lookup(SharedConstants.getRMIServiceString(SharedConstants.getDefaultServiceNum()));
 									} catch (Exception e2) {

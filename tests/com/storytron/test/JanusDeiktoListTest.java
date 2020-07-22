@@ -3,13 +3,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import Engine.enginePackage.Janus;
-
 import com.storytron.enginecommon.IncompatibleVersionException;
 import com.storytron.enginecommon.LimitException;
 import com.storytron.enginecommon.SessionLogoutException;
 import com.storytron.enginecommon.SharedConstants;
 import com.storytron.uber.operator.OperatorDictionary;
+
+import engPackage.Janus;
 
 
 public class JanusDeiktoListTest {

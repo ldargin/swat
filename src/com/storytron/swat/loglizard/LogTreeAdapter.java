@@ -1,6 +1,6 @@
 package com.storytron.swat.loglizard;
 
-import Engine.enginePackage.EngineLogger;
+import engPackage.EngineLogger;
 
 /** 
  * Class for navigating a log tree.

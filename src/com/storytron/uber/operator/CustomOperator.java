@@ -2,9 +2,9 @@ package com.storytron.uber.operator;
 
 import java.util.ArrayList;
 
-import Engine.enginePackage.Interpreter;
-
 import com.storytron.uber.Script;
+
+import engPackage.Interpreter;
 
 /** 
  * A custom operator has an associated script.

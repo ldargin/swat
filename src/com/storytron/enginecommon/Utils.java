@@ -61,14 +61,14 @@ import javax.swing.tree.TreePath;
 
 import org.xml.sax.SAXParseException;
 
-import Engine.enginePackage.EngineLogger.MsgType;
-
 import com.storytron.swat.util.LineBreaker;
 import com.storytron.uber.Deikto;
 import com.storytron.uber.Role;
 import com.storytron.uber.Verb;
 import com.storytron.uber.Deikto.LogIssue;
 import com.storytron.uber.deiktotrans.DeiktoLoader.BadVersionException;
+
+import engPackage.EngineLogger.MsgType;
 
 import com.storytron.swat.Swat;
 

@@ -1,6 +1,6 @@
 package com.storytron.uber.operator;
 
-import Engine.enginePackage.Interpreter;
+import engPackage.Interpreter;
 
 /** 
  * A ParamenterOperator is a reference to a parameter in a custom operator body.

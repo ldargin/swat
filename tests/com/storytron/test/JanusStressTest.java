@@ -19,7 +19,7 @@ import com.storytron.enginecommon.Utils;
 import com.storytron.uber.Deikto;
 import com.storytron.uber.operator.OperatorDictionary;
 
-import Engine.enginePackage.Janus;
+import engPackage.Janus;
 
 /** 
  * <p>This class implements a stress test for Janus.

@@ -27,8 +27,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.tree.TreeNode;
 
-import Engine.enginePackage.Interpreter;
-
 import com.storytron.enginecommon.StackChunk;
 import com.storytron.enginecommon.StackChunkGroup;
 import com.storytron.enginecommon.Utils;
@@ -42,6 +40,8 @@ import com.storytron.uber.operator.Operator;
 import com.storytron.uber.operator.OperatorDictionary;
 import com.storytron.uber.operator.ParameterOperator;
 import com.storytron.uber.operator.OperatorDictionary.Menu;
+
+import engPackage.Interpreter;
 
 /**
  * GUI program to analyze the behavior of scripts.

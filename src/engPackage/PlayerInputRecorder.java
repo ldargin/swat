@@ -1,11 +1,11 @@
-package Engine.enginePackage;
+package engPackage;
 
 import java.util.ArrayList;
 
-import Engine.enginePackage.Janus.SessionData;
-
 import com.storytron.enginecommon.LabeledSentence;
 import com.storytron.enginecommon.MenuElement;
+
+import engPackage.Janus.SessionData;
 
 /**
  * Records input from the player in order to play it again later.

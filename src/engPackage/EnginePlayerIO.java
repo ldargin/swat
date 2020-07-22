@@ -1,11 +1,11 @@
-package Engine.enginePackage;
+package engPackage;
 
 import java.util.ArrayList;
 
-import Engine.enginePackage.Janus.StopEngineException;
-
 import com.storytron.enginecommon.LabeledSentence;
 import com.storytron.enginecommon.MenuElement;
+
+import engPackage.Janus.StopEngineException;
 
 /**
  *  Interface for providing player input to the engine.
